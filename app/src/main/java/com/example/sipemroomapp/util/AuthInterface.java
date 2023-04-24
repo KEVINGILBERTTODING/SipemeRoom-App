@@ -1,6 +1,7 @@
 package com.example.sipemroomapp.util;
 
 import com.example.sipemroomapp.Model.ResponseModel;
+import com.example.sipemroomapp.Model.UserModel;
 
 import java.util.Map;
 
@@ -16,7 +17,7 @@ public interface AuthInterface {
 
     @FormUrlEncoded
     @POST("auth/login")
-    Call<ResponseModel>login(
+    Call<UserModel>login(
             @Field("username")String username,
             @Field("password") String password
     );

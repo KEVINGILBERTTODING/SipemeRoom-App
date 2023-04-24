@@ -13,12 +13,18 @@ public class UserModel implements Serializable {
     String username;
     @SerializedName("role")
     String role;
+    @SerializedName("code")
+    String code;
+    @SerializedName("message")
+    String message;
 
-    public UserModel(String nama, String userId, String username, String role) {
+    public UserModel(String nama, String userId, String username, String role, String code, String message) {
         this.nama = nama;
         this.userId = userId;
         this.username = username;
         this.role = role;
+        this.code = code;
+        this.message = message;
     }
 
     public String getNama() {
@@ -51,5 +57,17 @@ public class UserModel implements Serializable {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getMessage() {
+        return message;
     }
 }

@@ -90,6 +90,7 @@
                 <com.google.android.material.button.MaterialButton
                     android:layout_width="match_parent"
                     android:text="Login"
+                    android:id="@+id/btnLogin"
                     app:backgroundTint="@color/main"
                     android:layout_marginTop="@dimen/_20sdp"
                     android:layout_height="wrap_content"/>
