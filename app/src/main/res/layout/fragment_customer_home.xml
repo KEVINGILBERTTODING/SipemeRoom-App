@@ -84,7 +84,7 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvListRoom"
-                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
                     android:layout_width="match_parent"
                     tools:itemCount="3"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"

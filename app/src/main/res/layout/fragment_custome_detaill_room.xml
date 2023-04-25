@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Customer_fragment.CustomerDetaillRoomFragment">
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:background="@color/main"
+        android:id="@+id/ivRoom"
+        android:layout_height="@dimen/_250sdp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/_220sdp"
+        android:background="@drawable/container1"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvRoomName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ruangan"
+                    android:fontFamily="@font/popsem"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14ssp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:src="@drawable/baseline_groups_24"/>
+
+                    <TextView
+                        android:id="@+id/tvTotalPerson"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="20 Orang"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/popmed"
+                        android:textSize="@dimen/_12ssp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Dekorasi"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/popsem"
+                        android:textSize="@dimen/_13ssp"/>
+
+
+                    <TextView
+                        android:id="@+id/tvDekorasi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Standard"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/popmed"
+                        android:textSize="@dimen/_11ssp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tahun"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/popsem"
+                        android:textSize="@dimen/_13ssp"/>
+
+
+                    <TextView
+                        android:id="@+id/tvTahun"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2019"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/popmed"
+                        android:textSize="@dimen/_11ssp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Status"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/popsem"
+                        android:textSize="@dimen/_13ssp"/>
+
+
+                    <TextView
+                        android:id="@+id/tvStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Aktif"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/popmed"
+                        android:textSize="@dimen/_11ssp"/>
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSewa"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:text="Sewa sekarang"/>
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>
