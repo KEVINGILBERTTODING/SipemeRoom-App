@@ -1,13 +1,18 @@
 package com.example.sipemroomapp.Customer_fragment;
 
+import android.Manifest;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -41,6 +46,7 @@ public class CustomerHomeFragment extends Fragment {
     SharedPreferences sharedPreferences;
     ListRoomAdapter listRoomAdapter;
     GridLayoutManager gridLayoutManager;
+    Button btnDownload;
 
 
     @Override
@@ -52,6 +58,7 @@ public class CustomerHomeFragment extends Fragment {
        tvEmptyMainRoom = view.findViewById(R.id.tvEmptyMainRoom);
        tvUsername = view.findViewById(R.id.tvUsername);
        rvListRoom = view.findViewById(R.id.rvListRoom);
+       btnDownload = view.findViewById(R.id.btnDownload);
        customerInterface = DataApi.getClient().create(CustomerInterface.class);
        sharedPreferences = getContext().getSharedPreferences("user_data", getContext().MODE_PRIVATE);
        tvUsername.setText("Hai, "+sharedPreferences.getString("nama", null));
@@ -62,10 +69,15 @@ public class CustomerHomeFragment extends Fragment {
 
         displayListRoom();
 
+        // cek izin mengakses file external
+        if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 200);
+        } else if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 200);
+        }
 
 
-
-       return view;
+        return view;
     }
 
     private void displayMainRoom(){

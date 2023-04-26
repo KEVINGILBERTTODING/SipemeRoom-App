@@ -33,12 +33,14 @@ public class TransactionsModel implements Serializable {
     Integer statusPembayaran;
     @SerializedName("nama")
     String nama;
+    @SerializedName("durasi")
+    Integer durasi;
 
     @SerializedName("merek")
     String roomName;
     @SerializedName("no_plat")
     Integer totalPeople;
-    public TransactionsModel(String idRental, String idCustomer, String roomId, String tglRental, String tglKembali, Integer totalPeople, Double harga, Double denda, Double totalDenda, String tglPengembalian, String statusPengembalian, String statusRental, String buktiPembayaran, Integer statusPembayaran, String nama, String roomName) {
+    public TransactionsModel(String idRental, String idCustomer, Integer durasi, String roomId, String tglRental, String tglKembali, Integer totalPeople, Double harga, Double denda, Double totalDenda, String tglPengembalian, String statusPengembalian, String statusRental, String buktiPembayaran, Integer statusPembayaran, String nama, String roomName) {
         this.idRental = idRental;
         this.idCustomer = idCustomer;
         this.roomId = roomId;
@@ -54,6 +56,7 @@ public class TransactionsModel implements Serializable {
         this.buktiPembayaran = buktiPembayaran;
         this.statusPembayaran = statusPembayaran;
         this.nama = nama;
+        this.durasi = durasi;
         this.roomName = roomName;
     }
 
@@ -175,5 +178,9 @@ public class TransactionsModel implements Serializable {
 
     public Integer getTotalPeople() {
         return totalPeople;
+    }
+
+    public Integer getDurasi() {
+        return durasi;
     }
 }

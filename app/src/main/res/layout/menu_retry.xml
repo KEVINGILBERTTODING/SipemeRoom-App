@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        app:cardUseCompatPadding="true"
+        app:contentPadding="@dimen/_10sdp"
+        app:cardCornerRadius="@dimen/_20sdp"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Gagal memuat data"
+                android:fontFamily="@font/popmed"
+                android:textColor="@color/red"
+                android:textSize="@dimen/_11sdp"
+                android:layout_gravity="center_horizontal"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Terjadi kesalahan saat memuat data"
+                android:fontFamily="@font/popmed"
+                android:textSize="@dimen/_10sdp"
+                android:textColor="@color/gray"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_gravity="center_horizontal"/>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnRefresh"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_width="match_parent"
+                android:text="Muat ulang"
+                android:fontFamily="@font/popsem"
+                android:layout_height="wrap_content"/>
+
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

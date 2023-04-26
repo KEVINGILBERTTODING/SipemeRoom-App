@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F1F1F1"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Customer_fragment.CustomerDetailTransaksiFragment">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:background="@drawable/container_header"
+    android:layout_height="@dimen/_150sdp"/>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/_20sdp"
+        android:layout_marginLeft="@dimen/_20sdp"
+        android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/tvUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Detail Sewa"
+        android:maxLength="25"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/popmed"
+        android:textSize="@dimen/_16sdp"/>
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="850dp"
+            android:background="@drawable/ticket5"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:cardCornerRadius="@dimen/_10sdp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_15sdp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Invoice"
+                    android:maxLength="25"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:textColor="@color/dark_gray"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/hvbold"
+                    android:textSize="@dimen/_18sdp"/>
+                <TextView
+                    android:id="@+id/tvStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Belum disetujui"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="@color/red"
+                    android:fontFamily="@font/hv"
+                    android:textSize="@dimen/_11sdp"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Date: "
+                        android:textColor="@color/dark_gray"
+                        android:fontFamily="@font/hv"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:textSize="@dimen/_10sdp"/>
+
+                    <TextView
+                        android:id="@+id/tvDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2023-02-02"
+                        android:textColor="@color/dark_gray"
+                        android:fontFamily="@font/hv"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:textSize="@dimen/_10sdp"/>
+
+                </LinearLayout>
+
+
+
+
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:text="Ruangan"
+                    android:textColor="@color/dark_gray"
+                    android:fontFamily="@font/hv"
+                    android:textSize="@dimen/_12sdp"/>
+
+                <TextView
+                    android:id="@+id/tvRoomName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/dark_gray"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/hv"
+                    android:textSize="@dimen/_12sdp"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:background="@color/gray"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="Tanggal Sewa"
+                    android:textColor="@color/dark_gray"
+                    android:fontFamily="@font/hv"
+                    android:textSize="@dimen/_12sdp"/>
+
+                <TextView
+                    android:id="@+id/tvTglSewa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/dark_gray"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/hv"
+                    android:textSize="@dimen/_12sdp"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:background="@color/gray"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="Tanggal Kembali"
+                    android:textColor="@color/dark_gray"
+                    android:fontFamily="@font/hv"
+                    android:textSize="@dimen/_12sdp"/>
+
+                <TextView
+                    android:id="@+id/tvTglKembali"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/dark_gray"
+                    android:fontFamily="@font/hv"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:textSize="@dimen/_12sdp"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:background="@color/gray"/>
+
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="Durasi"
+                    android:textColor="@color/dark_gray"
+                    android:fontFamily="@font/hv"
+                    android:textSize="@dimen/_12sdp"/>
+
+                <TextView
+                    android:id="@+id/tvDurasi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/dark_gray"
+                    android:fontFamily="@font/hv"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:textSize="@dimen/_12sdp"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:background="@color/gray"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnDownload"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_gravity="end"
+                    android:backgroundTint="@color/black"
+                    android:text="Download invoice"/>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:text="Silahkan melakukan konfirmasi persetujuan kepada yang terkait :"
+                    android:textColor="@color/dark_gray"
+                    android:fontFamily="@font/hv"
+                    android:textSize="@dimen/_12sdp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ASDANI KINDARTO, S.Sos, M.Eng, Ph.D 08121352952"
+                    android:textColor="@color/dark_gray"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/hvbold"
+                    android:textSize="@dimen/_12sdp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="HANRY SUGIHASTOMO, S.Sos, MM 082169992772"
+                    android:textColor="@color/dark_gray"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/hvbold"
+                    android:textSize="@dimen/_12sdp"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnUploadBuktiPersetujuan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_gravity="end"
+                    android:backgroundTint="@color/black"
+                    android:text="Upload bukti persetujuan"/>
+
+
+
+            </LinearLayout>
+        </RelativeLayout>
+
+
+
+
+    </LinearLayout>
+
+    </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</RelativeLayout>

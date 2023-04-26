@@ -3,6 +3,7 @@ package com.example.sipemroomapp.CustomerAdapter;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +11,11 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.sipemroomapp.Customer_fragment.CustomerDetailTransaksiFragment;
 import com.example.sipemroomapp.Model.ResponseModel;
 import com.example.sipemroomapp.Model.TransactionsModel;
 import com.example.sipemroomapp.R;
@@ -112,6 +116,16 @@ public class CustomerTransactionsAdapter extends RecyclerView.Adapter<CustomerTr
                 alertDialog.show();
 
 
+            }
+        });
+        holder.btnCekPemesanan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new CustomerDetailTransaksiFragment();
+                Bundle bundle = new Bundle();
+                bundle.putInt("trans_id", Integer.parseInt(transactionsModelList.get(holder.getAdapterPosition()).getIdRental()));
+                fragment.setArguments(bundle);
+                ((FragmentActivity) context).getSupportFragmentManager().beginTransaction().replace(R.id.frameCustomer, fragment).addToBackStack(null).commit();
             }
         });
 

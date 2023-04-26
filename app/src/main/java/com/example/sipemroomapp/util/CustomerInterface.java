@@ -7,6 +7,7 @@ import com.example.sipemroomapp.Model.TransactionsModel;
 import java.util.List;
 import java.util.Map;
 
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -14,6 +15,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.PartMap;
 import retrofit2.http.Query;
 
@@ -39,5 +41,17 @@ public interface CustomerInterface {
             @Field("room_id") String roomId,
             @Field("trans_id") String transId
     );
+
+    @FormUrlEncoded
+    @POST("customer/detailTransaction")
+    Call<TransactionsModel>getDetailTransaction(
+            @Field("trans_id") Integer transId
+    );
+    @Multipart
+    @POST("customer/uploadPersetujuan")
+    Call<ResponseModel>uploadBuktiPersetujuan(
+            @PartMap Map<String, RequestBody>textData,
+            @Part MultipartBody.Part buktiPersetujuan
+            );
 
 }
