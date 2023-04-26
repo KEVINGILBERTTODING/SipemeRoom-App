@@ -8,11 +8,11 @@ public class ResponseModel implements Serializable {
     @SerializedName("code")
     Integer code;
     @SerializedName("status")
-    String status;
+    Boolean status;
     @SerializedName("message")
     String message;
 
-    public ResponseModel(Integer code, String status, String message) {
+    public ResponseModel(Integer code, Boolean status, String message) {
         this.code = code;
         this.status = status;
         this.message = message;
@@ -26,12 +26,8 @@ public class ResponseModel implements Serializable {
         this.code = code;
     }
 
-    public String getStatus() {
+    public Boolean getStatus() {
         return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public String getMessage() {

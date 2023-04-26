@@ -9,6 +9,8 @@ import java.util.Map;
 
 import okhttp3.RequestBody;
 import retrofit2.Call;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
@@ -29,6 +31,13 @@ public interface CustomerInterface {
     @GET("customer/getMyTransactions")
     Call<List<TransactionsModel>>getMyTransactions(
             @Query("user_id") String userId
+    );
+
+    @FormUrlEncoded
+    @POST("customer/orderCancel")
+    Call<ResponseModel>cancelOrder(
+            @Field("room_id") String roomId,
+            @Field("trans_id") String transId
     );
 
 }

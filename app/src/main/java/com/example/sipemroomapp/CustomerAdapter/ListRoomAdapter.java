@@ -23,7 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.sipemroomapp.Customer_fragment.CustomerDetaillRoomFragment;
-import com.example.sipemroomapp.Customer_fragment.CustomerHomeFragment;
+import com.example.sipemroomapp.Customer_fragment.CustomerMyTransactionsFragment;
 import com.example.sipemroomapp.Model.ResponseModel;
 import com.example.sipemroomapp.Model.RuanganModel;
 import com.example.sipemroomapp.R;
@@ -131,6 +131,8 @@ public class ListRoomAdapter extends RecyclerView.Adapter<ListRoomAdapter.ViewHo
                     bundle.putString("dekorasi", ruanganModelList.get(getAdapterPosition()).getWarna());
                     bundle.putString("tahun", ruanganModelList.get(getAdapterPosition()).getTahun());
                     bundle.putInt("status", ruanganModelList.get(getAdapterPosition()).getStatus());
+                    bundle.putString("harga", ruanganModelList.get(getAdapterPosition()).getHarga());
+                    bundle.putString("denda", ruanganModelList.get(getAdapterPosition()).getDenda());
                     fragment.setArguments(bundle);
                     ((FragmentActivity) context).getSupportFragmentManager().beginTransaction().replace(R.id.frameCustomer, fragment).addToBackStack(null).commit();
                 }
@@ -203,7 +205,7 @@ public class ListRoomAdapter extends RecyclerView.Adapter<ListRoomAdapter.ViewHo
                                     public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
                                         ResponseModel responseModel = response.body();
                                         if (response.isSuccessful() && responseModel.getCode() == 200) {
-                                            ((FragmentActivity) context).getSupportFragmentManager().beginTransaction().replace(R.id.frameCustomer, new CustomerHomeFragment()).commit();
+                                            ((FragmentActivity) context).getSupportFragmentManager().beginTransaction().replace(R.id.frameCustomer, new CustomerMyTransactionsFragment()).commit();
                                             Toasty.success(context, "Transaksi berhasil", Toasty.LENGTH_SHORT).show();
                                             progressBar.dismiss();
                                             dialogSewa.dismiss();

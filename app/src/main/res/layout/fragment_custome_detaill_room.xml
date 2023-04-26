@@ -149,6 +149,16 @@
                     android:layout_marginTop="@dimen/_20sdp"
                     android:text="Sewa sekarang"/>
 
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnKembali"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:backgroundTint="@color/gray"
+                    android:textColor="@color/black"
+                    android:text="Kembali"/>
+
             </LinearLayout>
 
         </androidx.core.widget.NestedScrollView>

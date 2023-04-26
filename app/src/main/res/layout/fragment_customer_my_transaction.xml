@@ -89,7 +89,7 @@
         android:id="@+id/tvEmpty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tidak ada ruangan yang tersedia"
+        android:text="Tidak ada transaksi"
         android:textColor="@color/gray"
         android:layout_gravity="center"
         android:layout_centerHorizontal="true"

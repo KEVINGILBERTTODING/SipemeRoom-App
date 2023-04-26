@@ -1,6 +1,8 @@
 package com.example.sipemroomapp.CustomerAdapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,11 +12,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.sipemroomapp.Model.ResponseModel;
 import com.example.sipemroomapp.Model.TransactionsModel;
 import com.example.sipemroomapp.R;
+import com.example.sipemroomapp.util.CustomerInterface;
+import com.example.sipemroomapp.util.DataApi;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import es.dmoral.toasty.Toasty;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CustomerTransactionsAdapter extends RecyclerView.Adapter<CustomerTransactionsAdapter.ViewHolder> {
     Context context;
@@ -46,6 +56,64 @@ public class CustomerTransactionsAdapter extends RecyclerView.Adapter<CustomerTr
             holder.btnCekPemesanan.setEnabled(false);
 
         }
+
+        holder.btnBatal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
+                alertDialog.setMessage("Apakah anda yakin ingin membatalkan transaksi ini?").setTitle("Peringatan")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                AlertDialog.Builder alert = new AlertDialog.Builder(context);
+                                alert.setCancelable(false).setTitle("Loading").setMessage("Menghapus transaksi...");
+                                AlertDialog progressDialog = alert.create();
+                                progressDialog.show();
+
+                                CustomerInterface customerInterface = DataApi.getClient().create(CustomerInterface.class);
+                                customerInterface.cancelOrder(
+                                        transactionsModelList.get(holder.getAdapterPosition()).getRoomId(),
+                                        transactionsModelList.get(holder.getAdapterPosition()).getIdRental()
+                                ).enqueue(new Callback<ResponseModel>() {
+                                    @Override
+                                    public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+                                        ResponseModel responseModel = response.body();
+                                        if (response.isSuccessful() && responseModel.getStatus() == true) {
+                                            transactionsModelList.remove(holder.getAdapterPosition());
+                                            notifyDataSetChanged();
+                                            notifyItemRangeChanged(holder.getAdapterPosition(), transactionsModelList.size());
+                                            notifyItemRangeRemoved(holder.getAdapterPosition(), transactionsModelList.size());
+                                            Toasty.success(context, "Transaksi berhasil dibatalkan", Toasty.LENGTH_SHORT).show();
+                                            progressDialog.dismiss();
+
+                                        }else {
+                                            Toasty.error(context, "Something went wrong", Toasty.LENGTH_SHORT).show();
+                                            progressDialog.dismiss();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<ResponseModel> call, Throwable t) {
+                                        Toasty.error(context, "Periksa koneksi internet anda", Toasty.LENGTH_SHORT).show();
+
+                                        progressDialog.dismiss();
+
+                                    }
+                                });
+
+                            }
+                        }).setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        });
+                alertDialog.show();
+
+
+            }
+        });
 
     }
 
