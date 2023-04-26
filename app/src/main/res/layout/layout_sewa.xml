@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        app:cardUseCompatPadding="true"
+        app:contentPadding="@dimen/_10sdp"
+        app:cardCornerRadius="@dimen/_20sdp"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Form Sewa Ruangan"
+                android:fontFamily="@font/popsem"
+                android:textSize="@dimen/_14ssp"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tanggal Rental"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="@font/popsem"
+                android:textSize="@dimen/_10ssp"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:id="@+id/tvTanggalRental"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="mm/dd/yyyy"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:fontFamily="@font/popsem"
+                android:padding="@dimen/_10sdp"
+                android:background="@drawable/container_edittext1"
+                android:textSize="@dimen/_10ssp"
+                android:textColor="@color/black"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tanggal Kembali"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="@font/popsem"
+                android:textSize="@dimen/_10ssp"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:id="@+id/tvTanggalKembali"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="mm/dd/yyyy"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:fontFamily="@font/popsem"
+                android:padding="@dimen/_10sdp"
+                android:background="@drawable/container_edittext1"
+                android:textSize="@dimen/_10ssp"
+                android:textColor="@color/black"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSewa"
+                android:layout_width="match_parent"
+                android:text="Sewa"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:fontFamily="@font/popsem"
+                android:layout_height="wrap_content"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnCancel"
+                android:layout_width="match_parent"
+                android:text="Batal"
+                app:backgroundTint="@color/red"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="@font/popsem"
+                android:layout_height="wrap_content"/>
+
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

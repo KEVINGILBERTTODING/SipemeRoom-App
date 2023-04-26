@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Customer_fragment.CustomerMyTransactionsFragment">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sdp"
+        android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SIPEME"
+            android:textColor="@color/black"
+            android:fontFamily="@font/popsem"
+            android:textSize="@dimen/_9sdp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ROOM"
+            android:textColor="@color/main"
+            android:fontFamily="@font/popsem"
+            android:textSize="@dimen/_13sdp"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Transaksi Saya"
+        android:maxLength="25"
+        android:textColor="@color/black"
+        android:fontFamily="@font/pop_light"
+        android:textSize="@dimen/_16sdp"/>
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:iconifiedByDefault="false"
+            android:background="@drawable/container_edittext1"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:queryHint="Cari ruangan"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Daftar transaksi"
+            android:maxLength="25"
+            android:textColor="@color/black"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:fontFamily="@font/popmed"
+            android:textSize="@dimen/_11sdp"/>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvMyTransactions"
+        android:layout_width="match_parent"
+        tools:itemCount="1"
+        tools:listitem="@layout/row_transactions"
+        android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvEmpty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tidak ada ruangan yang tersedia"
+        android:textColor="@color/gray"
+        android:layout_gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:visibility="gone"
+        android:fontFamily="@font/popmed"
+        android:textSize="@dimen/_11ssp"/>
+
+
+</RelativeLayout>
