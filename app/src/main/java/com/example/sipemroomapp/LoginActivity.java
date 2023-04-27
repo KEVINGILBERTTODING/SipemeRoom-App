@@ -42,8 +42,11 @@ public class LoginActivity extends AppCompatActivity {
 
 
         if (sharedPreferences.getBoolean("logged_in", false)) {
-            if (sharedPreferences.getString("role",null).equals("2")) {
+            if (sharedPreferences.getString("role",null).equals("2")) { // custome
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                finish();
+            }else{ // admin
+                startActivity(new Intent(LoginActivity.this, AdminMainActivity.class));
                 finish();
             }
         }
@@ -74,10 +77,18 @@ public class LoginActivity extends AppCompatActivity {
                                 editor.putString("role", userModel.getRole());
                                 editor.putBoolean("logged_in", true);
                                 editor.apply();
-                                startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                                finish();
-                                Toasty.success(getApplicationContext(), "Selamat datang " + userModel.getNama(), Toasty.LENGTH_SHORT).show();
-                                progressDialog.dismiss();
+                                if (userModel.getRole().equals("2")) {
+                                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                    finish();
+                                    Toasty.success(getApplicationContext(), "Selamat datang " + userModel.getNama(), Toasty.LENGTH_SHORT).show();
+                                    progressDialog.dismiss();
+                                }else {
+                                    startActivity(new Intent(LoginActivity.this, AdminMainActivity.class));
+                                    finish();
+                                    Toasty.success(getApplicationContext(), "Selamat datang " + userModel.getNama(), Toasty.LENGTH_SHORT).show();
+                                    progressDialog.dismiss();
+                                }
+
                             }else {
                                 Toasty.error(getApplicationContext(), userModel.getMessage(), Toasty.LENGTH_SHORT).show();
                                 progressDialog.dismiss();
