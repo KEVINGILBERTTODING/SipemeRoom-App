@@ -13,17 +13,26 @@ public class UserModel implements Serializable {
     String username;
     @SerializedName("role")
     String role;
+    @SerializedName("alamat")
+    String alamat;
+    @SerializedName("no_telepon")
+    String noTelp;
+    @SerializedName("no_ktp")
+    String noKtp;
     @SerializedName("code")
     String code;
     @SerializedName("message")
     String message;
 
-    public UserModel(String nama, String userId, String username, String role, String code, String message) {
+    public UserModel(String nama, String userId, String alamat, String noTelp, String noKtp, String username, String role, String code, String message) {
         this.nama = nama;
         this.userId = userId;
         this.username = username;
         this.role = role;
         this.code = code;
+        this.noKtp = noKtp;
+        this.alamat = alamat;
+        this.noTelp = noTelp;
         this.message = message;
     }
 
@@ -69,5 +78,33 @@ public class UserModel implements Serializable {
 
     public String getMessage() {
         return message;
+    }
+
+    public String getAlamat() {
+        return alamat;
+    }
+
+    public void setAlamat(String alamat) {
+        this.alamat = alamat;
+    }
+
+    public String getNoTelp() {
+        return noTelp;
+    }
+
+    public void setNoTelp(String noTelp) {
+        this.noTelp = noTelp;
+    }
+
+    public String getNoKtp() {
+        return noKtp;
+    }
+
+    public void setNoKtp(String noKtp) {
+        this.noKtp = noKtp;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

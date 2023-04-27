@@ -8,7 +8,7 @@
 
     <item
         android:id="@+id/menuTransactions"
-        android:title="Transaksi"
+        android:title="Riwayat"
         android:icon="@drawable/baseline_monetization_on_24"/>
 
     <item

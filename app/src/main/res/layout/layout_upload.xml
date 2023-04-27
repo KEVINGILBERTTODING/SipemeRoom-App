@@ -20,12 +20,13 @@
                 android:layout_height="wrap_content"
                 android:text="Upload bukti persetujuan"
                 android:fontFamily="@font/popsem"
-                android:textSize="@dimen/_14ssp"
+                android:textSize="@dimen/_11ssp"
                 android:textColor="@color/black"/>
 
          <androidx.appcompat.widget.LinearLayoutCompat
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
+             android:layout_marginTop="@dimen/_10sdp"
              android:orientation="horizontal">
              <Button
                  android:id="@+id/btnFilePicker"

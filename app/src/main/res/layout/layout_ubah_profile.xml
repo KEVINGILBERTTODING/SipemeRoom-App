@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        app:cardUseCompatPadding="true"
+        app:contentPadding="@dimen/_10sdp"
+        app:cardCornerRadius="@dimen/_20sdp"
+        android:layout_height="wrap_content">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ubah profil"
+                    android:fontFamily="@font/popsem"
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Username"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/popsem"
+                    android:textSize="@dimen/_10ssp"
+                    android:textColor="@color/black"/>
+
+                <EditText
+                    android:id="@+id/etUsername"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/popsem"
+                    android:padding="@dimen/_10sdp"
+                    android:background="@drawable/container_edittext1"
+                    android:textSize="@dimen/_10ssp"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nama"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/popsem"
+                    android:textSize="@dimen/_10ssp"
+                    android:textColor="@color/black"/>
+
+                <EditText
+                    android:id="@+id/etNama"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/popsem"
+                    android:padding="@dimen/_10sdp"
+                    android:background="@drawable/container_edittext1"
+                    android:textSize="@dimen/_10ssp"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Alamat"
+                    android:gravity="start"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/popsem"
+                    android:textSize="@dimen/_10ssp"
+                    android:textColor="@color/black"/>
+
+                <EditText
+                    android:id="@+id/etAlamat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/popsem"
+                    android:padding="@dimen/_10sdp"
+                    android:lines="4"
+                    android:gravity="start"
+                    android:background="@drawable/container_edittext1"
+                    android:textSize="@dimen/_10ssp"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Gender"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/popsem"
+                    android:textSize="@dimen/_10ssp"
+                    android:textColor="@color/black"/>
+
+                <Spinner
+                    android:id="@+id/spGender2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/popsem"
+                    android:padding="@dimen/_10sdp"
+                    android:background="@drawable/container_edittext1"
+                    android:textSize="@dimen/_10ssp"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="No telepon"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/popsem"
+                    android:textSize="@dimen/_10ssp"
+                    android:textColor="@color/black"/>
+
+                <EditText
+                    android:id="@+id/etNoTelp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/popsem"
+                    android:padding="@dimen/_10sdp"
+                    android:background="@drawable/container_edittext1"
+                    android:textSize="@dimen/_10ssp"
+                    android:inputType="number"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="No KTP"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/popsem"
+                    android:textSize="@dimen/_10ssp"
+                    android:textColor="@color/black"/>
+
+                <EditText
+                    android:id="@+id/etNoKtp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/popsem"
+                    android:padding="@dimen/_10sdp"
+                    android:background="@drawable/container_edittext1"
+                    android:textSize="@dimen/_10ssp"
+                    android:inputType="number"
+                    android:textColor="@color/black"/>
+
+
+
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSimpan"
+                    android:layout_width="match_parent"
+                    android:text="Simpan"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:fontFamily="@font/popsem"
+                    android:layout_height="wrap_content"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnCancel"
+                    android:layout_width="match_parent"
+                    android:text="Batal"
+                    app:backgroundTint="@color/red"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/popsem"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

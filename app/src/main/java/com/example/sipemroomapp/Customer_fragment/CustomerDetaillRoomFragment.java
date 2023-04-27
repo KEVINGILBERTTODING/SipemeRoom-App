@@ -158,7 +158,7 @@ public class CustomerDetaillRoomFragment extends Fragment {
                                 public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
                                     ResponseModel responseModel = response.body();
                                     if (response.isSuccessful() && responseModel.getCode() == 200) {
-                                        ((FragmentActivity) getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.frameCustomer, new CustomerHomeFragment()).commit();
+                                        ((FragmentActivity) getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.frameCustomer, new CustomerMyTransactionsFragment()).commit();
                                         Toasty.success(getContext(), "Transaksi berhasil", Toasty.LENGTH_SHORT).show();
                                         progressBar.dismiss();
                                         dialogSewa.dismiss();

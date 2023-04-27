@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.sipemroomapp.Customer_fragment.CustomerHomeFragment;
 import com.example.sipemroomapp.Customer_fragment.CustomerMyTransactionsFragment;
+import com.example.sipemroomapp.Customer_fragment.CustomerProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
                     replace(new CustomerMyTransactionsFragment());
                     return true;
                 }else if (item.getItemId() == R.id.menuProfile){
+                    replace(new CustomerProfileFragment());
                     return true;
                 }
                 return false;

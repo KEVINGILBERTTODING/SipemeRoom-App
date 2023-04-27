@@ -20,6 +20,7 @@ import com.example.sipemroomapp.R;
 import com.example.sipemroomapp.util.CustomerInterface;
 import com.example.sipemroomapp.util.DataApi;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import es.dmoral.toasty.Toasty;
@@ -53,6 +54,19 @@ public class CustomerMyTransactionsFragment extends Fragment {
         userId = sharedPreferences.getString("user_id", null);
 
         displayTransactions();
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filter(newText);
+                return false;
+            }
+        });
 
 
 
@@ -95,5 +109,21 @@ public class CustomerMyTransactionsFragment extends Fragment {
             }
         });
 
+    }
+
+    private void filter(String newText) {
+        ArrayList<TransactionsModel>filteredList = new ArrayList<>();
+        for (TransactionsModel item : transactionsModelList) {
+            if (item.getRoomName().toLowerCase().contains(newText.toLowerCase())) {
+                filteredList.add(item);
+            }
+        }
+
+        customerTransactionsAdapter.filterList(filteredList);
+        if (filteredList.isEmpty()) {
+            Toasty.normal(getContext(), "Tidak ditemukan", Toasty.LENGTH_SHORT).show();
+        }else {
+            customerTransactionsAdapter.filterList(filteredList);
+        }
     }
 }

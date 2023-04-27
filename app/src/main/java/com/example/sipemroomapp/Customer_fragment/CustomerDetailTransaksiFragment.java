@@ -188,7 +188,9 @@ public class CustomerDetailTransaksiFragment extends Fragment {
                     if (transactionsModel.getStatusPembayaran() == 1) {
                         tvStatus.setText("Telah disetujui");
                         tvStatus.setTextColor(getContext().getColor(R.color.green));
+                        btnUploadBuktiPersetujuan.setTextColor(getContext().getColor(R.color.white));
                         btnUploadBuktiPersetujuan.setText("Telah disetujui");
+                        btnUploadBuktiPersetujuan.setEnabled(false);
                     }else {
                         tvStatus.setText("belum disetujui");
                         tvStatus.setTextColor(getContext().getColor(R.color.red));

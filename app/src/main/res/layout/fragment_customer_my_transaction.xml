@@ -39,10 +39,10 @@
         android:id="@+id/tvUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Transaksi Saya"
+        android:text="Riwayat Sewa"
         android:maxLength="25"
         android:textColor="@color/black"
-        android:fontFamily="@font/pop_light"
+        android:fontFamily="@font/popmed"
         android:textSize="@dimen/_16sdp"/>
 
         <androidx.appcompat.widget.SearchView
@@ -57,7 +57,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Daftar transaksi"
+            android:text="Daftar Sewa"
             android:maxLength="25"
             android:textColor="@color/black"
             android:layout_marginTop="@dimen/_20sdp"

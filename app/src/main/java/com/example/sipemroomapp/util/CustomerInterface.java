@@ -3,6 +3,7 @@ package com.example.sipemroomapp.util;
 import com.example.sipemroomapp.Model.ResponseModel;
 import com.example.sipemroomapp.Model.RuanganModel;
 import com.example.sipemroomapp.Model.TransactionsModel;
+import com.example.sipemroomapp.Model.UserModel;
 
 import java.util.List;
 import java.util.Map;
@@ -53,5 +54,24 @@ public interface CustomerInterface {
             @PartMap Map<String, RequestBody>textData,
             @Part MultipartBody.Part buktiPersetujuan
             );
+
+    @FormUrlEncoded
+    @POST("customer/ubahPassword")
+    Call<ResponseModel>ubahPassword(
+            @Field("id_customer") String userId,
+            @Field("old_pass") String oldPass,
+            @Field("pass_new") String passNew
+    );
+
+    @Multipart
+    @POST("customer/updateProfile")
+    Call<ResponseModel>updateProfile(
+            @PartMap Map<String, RequestBody>textData
+    );
+
+    @GET("customer/getUserById")
+    Call<List<UserModel>>getUserById(
+            @Query("id_customer") String idCustomer
+    );
 
 }
