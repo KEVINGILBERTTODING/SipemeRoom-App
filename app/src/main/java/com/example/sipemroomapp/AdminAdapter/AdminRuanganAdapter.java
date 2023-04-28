@@ -1,9 +1,12 @@
 package com.example.sipemroomapp.AdminAdapter;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,15 +16,24 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.example.sipemroomapp.Model.ResponseModel;
 import com.example.sipemroomapp.Model.RuanganModel;
 import com.example.sipemroomapp.R;
+import com.example.sipemroomapp.util.AdminInterface;
+import com.example.sipemroomapp.util.DataApi;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import es.dmoral.toasty.Toasty;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class AdminRuanganAdapter extends RecyclerView.Adapter<AdminRuanganAdapter.ViewHolder> {
     Context context;
     List<RuanganModel>ruanganModelList;
+    AdminInterface adminInterface;
 
     public AdminRuanganAdapter(Context context, List<RuanganModel> ruanganModelList) {
         this.context = context;
@@ -68,7 +80,7 @@ public class AdminRuanganAdapter extends RecyclerView.Adapter<AdminRuanganAdapte
         notifyDataSetChanged();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView ivRoom;
         TextView tvRoomName, tvStatus;
         CardView cvStatus;
@@ -79,6 +91,63 @@ public class AdminRuanganAdapter extends RecyclerView.Adapter<AdminRuanganAdapte
             tvRoomName = itemView.findViewById(R.id.tvRoomName);
             tvStatus = itemView.findViewById(R.id.tvStatus);
             cvStatus = itemView.findViewById(R.id.cvStatus);
+            adminInterface = DataApi.getClient().create(AdminInterface.class);
+
+            itemView.setOnClickListener(this);
+
+        }
+
+        @Override
+        public void onClick(View v) {
+            Dialog optionMenu = new Dialog(context);
+            optionMenu.setCancelable(true);
+            optionMenu.setContentView(R.layout.room_option_menu);
+            optionMenu.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+            final Button btnDelete, btnEdit, btnDetail;
+            btnDelete = optionMenu.findViewById(R.id.btnDelete);
+            btnEdit = optionMenu.findViewById(R.id.btnEdit);
+            btnDetail = optionMenu.findViewById(R.id.btnDetail);
+            optionMenu.show();
+
+
+            btnDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    AlertDialog.Builder alert = new AlertDialog.Builder(context);
+                    alert.setMessage("Menghapus ruangan...").setTitle("Loading").setCancelable(false);
+                    AlertDialog progressDialog = alert.create();
+                    progressDialog.show();
+
+                    adminInterface.deleteRoom(ruanganModelList.get(getAdapterPosition()).getIdMobil()).enqueue(new Callback<ResponseModel>() {
+                        @Override
+                        public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+                            ResponseModel responseModel = response.body();
+                            if (response.isSuccessful() && responseModel.getStatus() == true) {
+                                ruanganModelList.remove(getAdapterPosition());
+                                notifyDataSetChanged();
+                                notifyItemRangeChanged(getAdapterPosition(), ruanganModelList.size());
+                                notifyItemRangeRemoved(getAdapterPosition(), ruanganModelList.size());
+                                Toasty.success(context, "Berhasil menghapus data", Toasty.LENGTH_SHORT).show();
+                                progressDialog.dismiss();
+                                optionMenu.dismiss();
+                            }else {
+                                Toasty.error(context, "Gagal menghapus data", Toasty.LENGTH_SHORT).show();
+                                progressDialog.dismiss();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<ResponseModel> call, Throwable t) {
+                            Toasty.error(context, "Periksa koneksi internet anda", Toasty.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+
+                        }
+                    });
+
+
+                }
+            });
 
         }
     }
