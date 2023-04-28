@@ -3,6 +3,7 @@ package com.example.sipemroomapp.AdminAdapter;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,10 +13,13 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.example.sipemroomapp.Customer_fragment.CustomerDetaillRoomFragment;
 import com.example.sipemroomapp.Model.ResponseModel;
 import com.example.sipemroomapp.Model.RuanganModel;
 import com.example.sipemroomapp.R;
@@ -146,6 +150,24 @@ public class AdminRuanganAdapter extends RecyclerView.Adapter<AdminRuanganAdapte
                     });
 
 
+                }
+            });
+            btnDetail.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    optionMenu.dismiss();
+                    Fragment fragment = new CustomerDetaillRoomFragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("room_id", ruanganModelList.get(getAdapterPosition()).getIdMobil());
+                    bundle.putString("gambar", ruanganModelList.get(getAdapterPosition()).getGambar());
+                    bundle.putString("room_name", ruanganModelList.get(getAdapterPosition()).getMerk());
+                    bundle.putString("dekorasi", ruanganModelList.get(getAdapterPosition()).getWarna());
+                    bundle.putString("tahun", ruanganModelList.get(getAdapterPosition()).getTahun());
+                    bundle.putInt("status", ruanganModelList.get(getAdapterPosition()).getStatus());
+                    bundle.putString("harga", ruanganModelList.get(getAdapterPosition()).getHarga());
+                    bundle.putString("denda", ruanganModelList.get(getAdapterPosition()).getDenda());
+                    fragment.setArguments(bundle);
+                    ((FragmentActivity) context).getSupportFragmentManager().beginTransaction().replace(R.id.frameAdmin, fragment).addToBackStack(null).commit();
                 }
             });
 
