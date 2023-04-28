@@ -63,4 +63,12 @@ public interface AdminInterface {
     Call<ResponseModel>deleteTipe(
             @Field("id") Integer id
     );
+
+    @FormUrlEncoded
+    @POST("admin/updatetipe")
+    Call<ResponseModel>updateTipe(
+            @Field("id") Integer id,
+            @Field("kode_tipe") String kodeTipe,
+            @Field("nama_tipe") String namaTipe
+    );
 }

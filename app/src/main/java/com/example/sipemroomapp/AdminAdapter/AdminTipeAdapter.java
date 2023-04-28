@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -110,6 +111,83 @@ public class AdminTipeAdapter extends RecyclerView.Adapter<AdminTipeAdapter.View
                             Toasty.error(context, "Periksa koneksi internet anda", Toasty.LENGTH_SHORT).show();
                             pd2.dismiss();
 
+                        }
+                    });
+
+                }
+            });
+            btnEdit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Dialog dialog = new Dialog(context);
+                    dialog.setContentView(R.layout.layout_insert_tipe);
+                    dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+                    dialog.setCanceledOnTouchOutside(false);
+                    final EditText etKodeTipe, etNamaTipe;
+                    final Button btnSimpan, btnBatal;
+                    etKodeTipe = dialog.findViewById(R.id.etKodeTipe);
+                    etNamaTipe = dialog.findViewById(R.id.etNamaTipe);
+                    btnSimpan = dialog.findViewById(R.id.btnSimpan);
+                    btnBatal = dialog.findViewById(R.id.btnBatal);
+                    etKodeTipe.setText(tipeModelList.get(getAdapterPosition()).getKodeTipe());
+                    etNamaTipe.setText(tipeModelList.get(getAdapterPosition()).getNamaTipe());
+                    dialog.show();
+                    btnSimpan.setOnClickListener(new View.OnClickListener() {
+
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                            androidx.appcompat.app.AlertDialog.Builder alert  = new androidx.appcompat.app.AlertDialog.Builder(context);
+                            alert.setCancelable(false).setMessage("Menyimpan data...").setTitle("Loading");
+                            androidx.appcompat.app.AlertDialog pd = alert.create();
+                            pd.show();
+
+                            if (etNamaTipe.getText().toString().isEmpty()){
+                                Toasty.error(context, "Field nama tipe tidak boleh kosong", Toasty.LENGTH_SHORT).show();
+
+                            } else if (etKodeTipe.getText().toString().isEmpty()){
+                                Toasty.error(context, "Field kode tipe tidak boleh kosong", Toasty.LENGTH_SHORT).show();
+
+                            }else {
+                                adminInterface.updateTipe(
+                                        Integer.parseInt(tipeModelList.get(getAdapterPosition()).getIdTipe()),
+                                        etKodeTipe.getText().toString(),
+                                        etNamaTipe.getText().toString()).enqueue(new Callback<ResponseModel>() {
+                                    @Override
+                                    public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+                                        ResponseModel responseModel = response.body();
+                                        if (response.isSuccessful() && responseModel.getStatus() == true) {
+                                            tipeModelList.get(getAdapterPosition()).setKodeTipe(etKodeTipe.getText().toString());
+                                            tipeModelList.get(getAdapterPosition()).setNamaTipe(etNamaTipe.getText().toString());
+                                            notifyDataSetChanged();
+                                            Toasty.success(context, "Berhasil mengubah data", Toasty.LENGTH_SHORT).show();
+                                            dialog.dismiss();
+                                            pd.dismiss();
+                                            optionMenu.dismiss();
+
+                                        }else {
+                                            Toasty.success(context, "Gagal mengubah data", Toasty.LENGTH_SHORT).show();
+                                            pd.dismiss();
+                                            optionMenu.dismiss();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<ResponseModel> call, Throwable t) {
+                                        Toasty.success(context, "Periksa koneksi internet anda", Toasty.LENGTH_SHORT).show();
+                                        pd.dismiss();
+                                        optionMenu.dismiss();
+                                    }
+                                });
+                            }
+
+                        }
+                    });
+                    btnBatal.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                            optionMenu.dismiss();
                         }
                     });
 
