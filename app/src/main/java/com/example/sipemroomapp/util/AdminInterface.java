@@ -3,6 +3,7 @@ package com.example.sipemroomapp.util;
 import com.example.sipemroomapp.Model.ResponseModel;
 import com.example.sipemroomapp.Model.RuanganModel;
 import com.example.sipemroomapp.Model.TipeModel;
+import com.example.sipemroomapp.Model.UserModel;
 
 import java.util.List;
 import java.util.Map;
@@ -71,4 +72,7 @@ public interface AdminInterface {
             @Field("kode_tipe") String kodeTipe,
             @Field("nama_tipe") String namaTipe
     );
+
+    @GET("admin/getalluser")
+    Call<List<UserModel>>getAllUser();
 }
