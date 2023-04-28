@@ -50,4 +50,11 @@ public interface AdminInterface {
             @PartMap Map<String, RequestBody>textData
 
     );
+
+    @FormUrlEncoded
+    @POST("admin/inserttipe")
+    Call<ResponseModel>insertTipe(
+            @Field("kode_tipe") String kodeTipe,
+            @Field("nama_tipe") String namaTipe
+    );
 }

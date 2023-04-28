@@ -17,7 +17,7 @@ import com.example.sipemroomapp.R;
 public class AdminHomeFragment extends Fragment {
     TextView tvUsername;
     SharedPreferences sharedPreferences;
-    CardView cvDataRuangan;
+    CardView cvDataRuangan, cvDataTipe;
 
 
     @Override
@@ -29,11 +29,19 @@ public class AdminHomeFragment extends Fragment {
        sharedPreferences = getContext().getSharedPreferences("user_data", Context.MODE_PRIVATE);
        tvUsername.setText("Hai, " +sharedPreferences.getString("nama", null));
        cvDataRuangan = view.findViewById(R.id.menuDataRuangan);
+       cvDataTipe = view.findViewById(R.id.menuDataTipe);
 
       cvDataRuangan.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
               replace(new AdminDataRuanganFragment());
+          }
+      });
+
+      cvDataTipe.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+              replace(new AdminDataTipeFragment());
           }
       });
 
