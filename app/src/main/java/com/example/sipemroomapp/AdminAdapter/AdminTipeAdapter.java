@@ -1,24 +1,35 @@
 package com.example.sipemroomapp.AdminAdapter;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.sipemroomapp.Model.ResponseModel;
 import com.example.sipemroomapp.Model.TipeModel;
 import com.example.sipemroomapp.R;
+import com.example.sipemroomapp.util.AdminInterface;
+import com.example.sipemroomapp.util.DataApi;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import es.dmoral.toasty.Toasty;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class AdminTipeAdapter extends RecyclerView.Adapter<AdminTipeAdapter.ViewHolder> {
     Context context;
     List<TipeModel>tipeModelList;
+    AdminInterface adminInterface;
 
     public AdminTipeAdapter(Context context, List<TipeModel> tipeModelList) {
         this.context = context;
@@ -60,8 +71,50 @@ public class AdminTipeAdapter extends RecyclerView.Adapter<AdminTipeAdapter.View
 
         @Override
         public void onClick(View v) {
+            adminInterface = DataApi.getClient().create(AdminInterface.class);
             Dialog optionMenu = new Dialog(context);
             optionMenu.setContentView(R.layout.option_menu_tipe_room);
+            optionMenu.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+            final Button btnDelete, btnEdit;
+            btnDelete = optionMenu.findViewById(R.id.btnDelete);
+            btnEdit = optionMenu.findViewById(R.id.btnEdit);
+            optionMenu.show();
+
+            btnDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    optionMenu.dismiss();
+                    AlertDialog.Builder alertDiaalog = new AlertDialog.Builder(context);
+                    alertDiaalog.setCancelable(false).setMessage("Menghapus tipe...").setTitle("Loading");
+                    AlertDialog pd2 = alertDiaalog.create();
+
+                    adminInterface.deleteTipe(Integer.parseInt(tipeModelList.get(getAdapterPosition()).getIdTipe())).enqueue(new Callback<ResponseModel>() {
+                        @Override
+                        public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+                            ResponseModel responseModel = response.body();
+                            if (response.isSuccessful() && responseModel.getStatus() == true) {
+                                Toasty.success(context, "Berhasil menghapus tipe", Toasty.LENGTH_SHORT).show();
+                                tipeModelList.remove(getAdapterPosition());
+                                notifyDataSetChanged();
+                                notifyItemRangeChanged(getAdapterPosition(), tipeModelList.size());
+                                notifyItemRangeRemoved(getAdapterPosition(), tipeModelList.size());
+                                pd2.dismiss();
+                            }else {
+                                Toasty.error(context, responseModel.getMessage(), Toasty.LENGTH_SHORT).show();
+                                pd2.dismiss();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<ResponseModel> call, Throwable t) {
+                            Toasty.error(context, "Periksa koneksi internet anda", Toasty.LENGTH_SHORT).show();
+                            pd2.dismiss();
+
+                        }
+                    });
+
+                }
+            });
         }
     }
 }
