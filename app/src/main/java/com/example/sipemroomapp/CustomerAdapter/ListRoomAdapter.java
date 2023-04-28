@@ -130,6 +130,7 @@ public class ListRoomAdapter extends RecyclerView.Adapter<ListRoomAdapter.ViewHo
                     bundle.putString("room_name", ruanganModelList.get(getAdapterPosition()).getMerk());
                     bundle.putString("dekorasi", ruanganModelList.get(getAdapterPosition()).getWarna());
                     bundle.putString("tahun", ruanganModelList.get(getAdapterPosition()).getTahun());
+                    bundle.putInt("total_person", ruanganModelList.get(getAdapterPosition()).getNoPlat());
                     bundle.putInt("status", ruanganModelList.get(getAdapterPosition()).getStatus());
                     bundle.putString("harga", ruanganModelList.get(getAdapterPosition()).getHarga());
                     bundle.putString("denda", ruanganModelList.get(getAdapterPosition()).getDenda());

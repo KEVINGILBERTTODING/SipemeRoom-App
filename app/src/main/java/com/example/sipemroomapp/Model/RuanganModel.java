@@ -18,6 +18,8 @@ public class RuanganModel implements Serializable {
     String warna;
     @SerializedName("tahun")
     String tahun;
+    @SerializedName("sopir")
+    Integer makanan;
     @SerializedName("status")
     Integer status;
     @SerializedName("harga")
@@ -32,8 +34,10 @@ public class RuanganModel implements Serializable {
     String centalLock;
     @SerializedName("gambar")
     String gambar;
+    @SerializedName("no_plat")
+    Integer noPlat;
 
-    public RuanganModel(Integer idMobil, String kodeTipe, String merk, String warna, String tahun, Integer status, String harga, String denda, Integer ac, Integer mp3Player, String centalLock, String gambar) {
+    public RuanganModel(Integer idMobil, Integer makanan,Integer noPlat, String kodeTipe, String merk, String warna, String tahun, Integer status, String harga, String denda, Integer ac, Integer mp3Player, String centalLock, String gambar) {
         this.idMobil = idMobil;
         this.kodeTipe = kodeTipe;
         this.merk = merk;
@@ -41,11 +45,13 @@ public class RuanganModel implements Serializable {
         this.tahun = tahun;
         this.status = status;
         this.harga = harga;
+        this.noPlat = noPlat;
         this.denda = denda;
         this.ac = ac;
         this.mp3Player = mp3Player;
         this.centalLock = centalLock;
         this.gambar = gambar;
+        this.makanan = makanan;
     }
 
     public Integer getIdMobil() {
@@ -142,5 +148,13 @@ public class RuanganModel implements Serializable {
 
     public void setGambar(String gambar) {
         this.gambar = gambar;
+    }
+
+    public Integer getNoPlat() {
+        return noPlat;
+    }
+
+    public Integer getMakanan() {
+        return makanan;
     }
 }

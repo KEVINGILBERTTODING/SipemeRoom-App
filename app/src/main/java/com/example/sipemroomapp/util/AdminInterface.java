@@ -37,4 +37,17 @@ public interface AdminInterface {
     Call<ResponseModel>deleteRoom(
             @Field("room_id") Integer roomId
     );
+
+    @Multipart
+    @POST("admin/updateRoom")
+    Call<ResponseModel>updateRoom(
+            @PartMap Map<String, RequestBody>textData,
+            @Part MultipartBody.Part image
+    );
+    @Multipart
+    @POST("admin/updateRoom")
+    Call<ResponseModel>updateRoomNotImage(
+            @PartMap Map<String, RequestBody>textData
+
+    );
 }

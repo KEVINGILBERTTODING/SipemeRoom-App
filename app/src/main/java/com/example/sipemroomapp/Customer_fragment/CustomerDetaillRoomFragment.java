@@ -69,6 +69,8 @@ public class CustomerDetaillRoomFragment extends Fragment {
        harga = getArguments().getString("harga");
        denda = getArguments().getString("denda");
 
+       tvTotalPerson.setText(String.valueOf(getArguments().getInt("total_person")) + " Orang");
+
        if (status == 0) {
            btnSewa.setEnabled(false);
            btnSewa.setBackgroundColor(getContext().getResources().getColor(R.color.red));

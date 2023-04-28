@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.example.sipemroomapp.AdminFragment.AdminEditRuanganFragment;
 import com.example.sipemroomapp.Customer_fragment.CustomerDetaillRoomFragment;
 import com.example.sipemroomapp.Model.ResponseModel;
 import com.example.sipemroomapp.Model.RuanganModel;
@@ -166,8 +167,29 @@ public class AdminRuanganAdapter extends RecyclerView.Adapter<AdminRuanganAdapte
                     bundle.putInt("status", ruanganModelList.get(getAdapterPosition()).getStatus());
                     bundle.putString("harga", ruanganModelList.get(getAdapterPosition()).getHarga());
                     bundle.putString("denda", ruanganModelList.get(getAdapterPosition()).getDenda());
+                    bundle.putInt("total_person", ruanganModelList.get(getAdapterPosition()).getNoPlat());
+
                     fragment.setArguments(bundle);
                     ((FragmentActivity) context).getSupportFragmentManager().beginTransaction().replace(R.id.frameAdmin, fragment).addToBackStack(null).commit();
+                }
+            });
+            btnEdit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    optionMenu.dismiss();
+                    Fragment fragment = new AdminEditRuanganFragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("room_id", String.valueOf(ruanganModelList.get(getAdapterPosition()).getIdMobil()));
+                    bundle.putString("room_name", String.valueOf(ruanganModelList.get(getAdapterPosition()).getMerk()));
+                    bundle.putString("kapasitas", String.valueOf(ruanganModelList.get(getAdapterPosition()).getNoPlat()));
+                    bundle.putString("dekorasi", String.valueOf(ruanganModelList.get(getAdapterPosition()).getWarna()));
+                    bundle.putString("harga_sewa", String.valueOf(ruanganModelList.get(getAdapterPosition()).getHarga()));
+                    bundle.putString("denda", String.valueOf(ruanganModelList.get(getAdapterPosition()).getDenda()));
+                    bundle.putString("tahun", String.valueOf(ruanganModelList.get(getAdapterPosition()).getTahun()));
+                    bundle.putString("gambar", String.valueOf(ruanganModelList.get(getAdapterPosition()).getGambar()));
+                    fragment.setArguments(bundle);
+                    ((FragmentActivity) context).getSupportFragmentManager().beginTransaction().replace(R.id.frameAdmin, fragment).addToBackStack(null).commit();
+
                 }
             });
 
