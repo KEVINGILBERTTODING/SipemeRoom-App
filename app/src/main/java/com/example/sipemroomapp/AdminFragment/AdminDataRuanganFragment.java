@@ -10,6 +10,7 @@ import android.widget.Button;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -39,12 +40,14 @@ public class AdminDataRuanganFragment extends Fragment {
     SearchView searchView;
 
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_admin_data_ruangan, container, false);
         rvRuangan = view.findViewById(R.id.rvListRoom);
+        fabInsert = view.findViewById(R.id.fabInsert);
         adminInterface = DataApi.getClient().create(AdminInterface.class);
         searchView = view.findViewById(R.id.searchView);
 
@@ -60,6 +63,15 @@ public class AdminDataRuanganFragment extends Fragment {
             public boolean onQueryTextChange(String newText) {
                 filter(newText);
                 return false;
+            }
+        });
+
+        fabInsert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((FragmentActivity) getContext()).getSupportFragmentManager()
+                        .beginTransaction().replace(R.id.frameAdmin, new AdminInsertRuanganFragment())
+                        .addToBackStack(null).commit();
             }
         });
 
