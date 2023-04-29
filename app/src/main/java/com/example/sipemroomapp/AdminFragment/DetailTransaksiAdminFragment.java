@@ -2,6 +2,8 @@ package com.example.sipemroomapp.AdminFragment;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -11,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -48,7 +51,6 @@ public class DetailTransaksiAdminFragment extends Fragment {
         tvRuangan.setText(getArguments().getString("ruangan"));
         tvtglSewa.setText(getArguments().getString("tgl_sewa"));
         tvTglKembali.setText(getArguments().getString("tgl_kembali"));
-        tvTglSelesai.setText(getArguments().getString("tgl_selesai"));
         tvStatusSewa.setText(getArguments().getString("status_pengembalian"));
         tvStatusSelesai.setText(getArguments().getString("status_selesai"));
 
@@ -64,7 +66,6 @@ public class DetailTransaksiAdminFragment extends Fragment {
 
         }
 
-        Log.d("dsad", "onCreateView: "+getArguments().getString("status_pembayaran"));
 
         // jika status persetujuan  == TRUE maka hide button konfirmasi
         if (getArguments().getString("status_pembayaran").equals("1")) {
@@ -198,6 +199,101 @@ public class DetailTransaksiAdminFragment extends Fragment {
 
             }
         });
+        btnSelesai.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Dialog dialog = new Dialog(getContext());
+                dialog.setContentView(R.layout.layout_sewa_selesai);
+                dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+                dialog.setCanceledOnTouchOutside(false);
+                final Button btnSelesai, btnBatal;
+                final TextView tvDatePicker;
+                btnBatal = dialog.findViewById(R.id.btnBatal);
+                btnSelesai = dialog.findViewById(R.id.btnSelesai);
+                tvDatePicker = dialog.findViewById(R.id.tvDatePicker);
+                dialog.show();
+
+                btnBatal.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+                tvDatePicker.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        DatePickerDialog datePickerDialog = new DatePickerDialog(getContext());
+                        datePickerDialog.setOnDateSetListener(new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+
+                                String dateFormatted, monthFormatted;
+                                if (dayOfMonth < 10) {
+                                    dateFormatted = String.format("%02d", dayOfMonth);
+                                }else {
+                                    dateFormatted = String.valueOf(dayOfMonth);
+                                }
+
+                                if (month < 10) {
+                                    monthFormatted = String.format("%02d", month+ 1);
+                                }else {
+                                    monthFormatted = String.valueOf(month + 1);
+                                }
+                                tvDatePicker.setText(year +"-" + monthFormatted +"-" + dateFormatted);
+
+
+
+
+
+                            }
+                        });
+                        datePickerDialog.show();
+
+                    }
+                });
+                btnSelesai.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (tvDatePicker.getText().toString().isEmpty()) {
+                            Toasty.error(getContext(), "Harap memilih tanggal terlebih dahulu", Toasty.LENGTH_SHORT).show();
+                        }else {
+
+                            AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
+                            alert.setCancelable(false).setTitle("Loading").setMessage("Kofirmasi data...");
+                            AlertDialog progressDialog = alert.create();
+                            progressDialog.show();
+
+                            adminInterface.sewaSelesai(transId, tvDatePicker.getText().toString())
+                                    .enqueue(new Callback<ResponseModel>() {
+                                        @Override
+                                        public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+                                            ResponseModel responseModel = response.body();
+                                            if (response.isSuccessful() && responseModel.getCode() == 200) {
+                                                Toasty.success(getContext(), "Behasil konfirmasi transaksi", Toasty.LENGTH_SHORT).show();
+                                                dialog.dismiss();
+                                                getActivity().onBackPressed();
+                                                progressDialog.dismiss();
+                                            }else {
+                                                Toasty.error(getContext(), "Something went wrong", Toasty.LENGTH_SHORT).show();
+                                                progressDialog.dismiss();
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onFailure(Call<ResponseModel> call, Throwable t) {
+                                            Toasty.error(getContext(), "Periksa koneksi internet anda", Toasty.LENGTH_SHORT).show();
+                                            progressDialog.dismiss();
+
+                                        }
+                                    });
+                        }
+
+                    }
+                });
+
+            }
+        });
 
 
         return view;
@@ -217,6 +313,12 @@ public class DetailTransaksiAdminFragment extends Fragment {
         btnSelesai = view.findViewById(R.id.btnSelesai);
         btnReject = view.findViewById(R.id.btnTolak);
         btnKembali = view.findViewById(R.id.btnKembali) ;
+
+        if (getArguments().getString("tgl_selesai").equals("0000-00-00")) {
+            tvTglSelesai.setText("-");
+        }else {
+            tvTglSelesai.setText(getArguments().getString("tgl_selesai"));
+        }
 
 
 

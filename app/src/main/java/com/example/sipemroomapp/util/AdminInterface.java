@@ -103,4 +103,15 @@ public interface AdminInterface {
     Call<ResponseModel>deleteTransactions(
             @Field("trans_id") String transId
     );
+
+
+    @FormUrlEncoded
+    @POST("admin/sewaSelesai")
+    Call<ResponseModel>sewaSelesai(
+            @Field("trans_id") String transId,
+            @Field("tanggal") String tanggal
+    );
+
+
+
 }
