@@ -9,6 +9,8 @@ public class UserModel implements Serializable {
     String nama;
     @SerializedName("user_id")
     String userId;
+    @SerializedName("id_customer")
+    String customerId;
     @SerializedName("username")
     String username;
     @SerializedName("role")
@@ -24,7 +26,7 @@ public class UserModel implements Serializable {
     @SerializedName("message")
     String message;
 
-    public UserModel(String nama, String userId, String alamat, String noTelp, String noKtp, String username, String role, String code, String message) {
+    public UserModel(String nama, String userId, String customerId, String alamat, String noTelp, String noKtp, String username, String role, String code, String message) {
         this.nama = nama;
         this.userId = userId;
         this.username = username;
@@ -34,6 +36,7 @@ public class UserModel implements Serializable {
         this.alamat = alamat;
         this.noTelp = noTelp;
         this.message = message;
+        this.customerId = customerId;
     }
 
     public String getNama() {
@@ -106,5 +109,9 @@ public class UserModel implements Serializable {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public String getCustomerId() {
+        return customerId;
     }
 }

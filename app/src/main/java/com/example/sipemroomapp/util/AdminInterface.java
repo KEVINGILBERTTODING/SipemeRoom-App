@@ -75,4 +75,10 @@ public interface AdminInterface {
 
     @GET("admin/getalluser")
     Call<List<UserModel>>getAllUser();
+
+    @FormUrlEncoded
+    @POST("admin/deleteuser")
+    Call<ResponseModel>deleteUser(
+            @Field("customer_id") String customerId
+    );
 }
