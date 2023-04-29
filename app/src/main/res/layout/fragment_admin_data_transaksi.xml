@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
+    tools:context=".AdminFragment.AdminDataTransaksiFragment">
+
+
+    <RelativeLayout
+        android:id="@+id/containerHeader"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_120sdp"
+        android:background="@drawable/container_header3">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_10sdp"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SIPEME"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/popsem"
+                    android:textSize="@dimen/_9sdp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ROOM"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/popsem"
+                    android:textSize="@dimen/_13sdp"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Data Transaksi"
+                android:maxLength="25"
+                android:textColor="@color/black"
+                android:fontFamily="@font/popmed"
+                android:textSize="@dimen/_16sdp"/>
+
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/searchView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:iconifiedByDefault="false"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/container_searchview"
+                app:queryHint="Cari nama..."/>
+        </LinearLayout>
+
+
+
+
+
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:padding="@dimen/_10sdp"
+        android:layout_below="@+id/containerHeader"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Daftar Transaksi"
+            android:textColor="@color/black"
+            android:fontFamily="@font/popmed"
+            android:textSize="@dimen/_12sdp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvListTransaksi"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvEmpty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tidak ada transaksi"
+        android:fontFamily="@font/popmed"
+        android:visibility="gone"
+        android:gravity="center_horizontal"
+        android:layout_centerVertical="true"
+        android:textSize="@dimen/_11ssp"/>
+
+
+
+</RelativeLayout>

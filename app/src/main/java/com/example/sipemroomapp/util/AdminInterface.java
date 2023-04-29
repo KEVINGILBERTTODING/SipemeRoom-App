@@ -3,6 +3,7 @@ package com.example.sipemroomapp.util;
 import com.example.sipemroomapp.Model.ResponseModel;
 import com.example.sipemroomapp.Model.RuanganModel;
 import com.example.sipemroomapp.Model.TipeModel;
+import com.example.sipemroomapp.Model.TransactionsModel;
 import com.example.sipemroomapp.Model.UserModel;
 
 import java.util.List;
@@ -87,4 +88,7 @@ public interface AdminInterface {
     Call<ResponseModel>updateCustomer(
             @PartMap Map<String, RequestBody>textData
     );
+
+    @GET("admin/getalltransactions")
+    Call<List<TransactionsModel>>getAllTransactions();
 }
