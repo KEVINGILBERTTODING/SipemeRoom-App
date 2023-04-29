@@ -19,6 +19,7 @@ import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
 import retrofit2.http.PartMap;
+import retrofit2.http.Query;
 
 public interface AdminInterface {
     @GET("admin/getAllRuangan")
@@ -110,6 +111,12 @@ public interface AdminInterface {
     Call<ResponseModel>sewaSelesai(
             @Field("trans_id") String transId,
             @Field("tanggal") String tanggal
+    );
+
+    @GET("admin/filterLaporan")
+    Call<List<TransactionsModel>>filterLaporanTransaksi(
+            @Query("dari") String dari,
+            @Query("sampai") String sampai
     );
 
 
