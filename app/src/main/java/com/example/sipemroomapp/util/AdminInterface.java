@@ -81,4 +81,10 @@ public interface AdminInterface {
     Call<ResponseModel>deleteUser(
             @Field("customer_id") String customerId
     );
+
+    @Multipart
+    @POST("admin/updatecustomer")
+    Call<ResponseModel>updateCustomer(
+            @PartMap Map<String, RequestBody>textData
+    );
 }

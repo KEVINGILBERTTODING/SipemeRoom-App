@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +12,11 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.sipemroomapp.AdminFragment.AdminEditCustomerFragment;
 import com.example.sipemroomapp.Model.ResponseModel;
 import com.example.sipemroomapp.Model.UserModel;
 import com.example.sipemroomapp.R;
@@ -132,6 +136,25 @@ public class AdminUserAdapter extends RecyclerView.Adapter<AdminUserAdapter.View
                             });
 
                     alertDelete.show();
+                }
+            });
+
+            btnEdit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mainOptionMenu.dismiss();
+                    Fragment fragment = new AdminEditCustomerFragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("nama", userModelList.get(getAdapterPosition()).getNama());
+                    bundle.putString("username", userModelList.get(getAdapterPosition()).getUsername());
+                    bundle.putString("alamat", userModelList.get(getAdapterPosition()).getAlamat());
+                    bundle.putString("telepon", userModelList.get(getAdapterPosition()).getNoTelp());
+                    bundle.putString("ktp", userModelList.get(getAdapterPosition()).getNoKtp());
+                    bundle.putString("userId", userModelList.get(getAdapterPosition()).getCustomerId());
+                    fragment.setArguments(bundle);
+                    ((FragmentActivity) context).getSupportFragmentManager().beginTransaction()
+                            .addToBackStack(null).replace(R.id.frameAdmin, fragment).commit();
+
                 }
             });
 
