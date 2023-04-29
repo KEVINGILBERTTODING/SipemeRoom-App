@@ -1,8 +1,9 @@
-package com.example.sipemroomapp;
+package com.example.sipemroomapp.AdminFragment;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -10,9 +11,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import com.example.sipemroomapp.Model.ResponseModel;
+import com.example.sipemroomapp.R;
 import com.example.sipemroomapp.util.AuthInterface;
 import com.example.sipemroomapp.util.DataApi;
 
@@ -25,8 +27,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class RegisterActivity extends AppCompatActivity {
 
+public class AdminInsertNewUserFragment extends Fragment {
     Spinner spGender;
     EditText etNama, etUsername, etAlamat, etTelepon, etKtp, etPass;
     Button btnRegister;
@@ -35,31 +37,35 @@ public class RegisterActivity extends AppCompatActivity {
     String jk;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
-        spGender = findViewById(R.id.spGender);
-        etNama = findViewById(R.id.etNama);
-        etUsername = findViewById(R.id.etUsername);
-        etAlamat = findViewById(R.id.etAlamat);
-        etTelepon = findViewById(R.id.etNoTelp);
-        etKtp = findViewById(R.id.etNoKtp);
-        etPass = findViewById(R.id.etPasword);
-        btnRegister = findViewById(R.id.btnRegist);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_admin_insert_new_user, container, false);
+        spGender = view.findViewById(R.id.spGender);
+        etNama = view.findViewById(R.id.etNama);
+        etUsername = view.findViewById(R.id.etUsername);
+        etAlamat = view.findViewById(R.id.etAlamat);
+        etTelepon = view.findViewById(R.id.etNoTelp);
+        etKtp = view.findViewById(R.id.etNoKtp);
+        etPass = view.findViewById(R.id.etPasword);
+        btnRegister = view.findViewById(R.id.btnRegist);
+
+
+
 
         // create spinner adapter
-        ArrayAdapter genderAdapter  = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, gender);
+        ArrayAdapter genderAdapter  = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, gender);
         genderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spGender.setAdapter(genderAdapter);
 
         spGender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-              if (genderAdapter.getItem(position).equals("Laki-laki")) {
-                  jk = "laki-laki";
-              }else {
-                  jk = "perempuan";
-              }
+                if (genderAdapter.getItem(position).equals("Laki-laki")) {
+                    jk = "laki-laki";
+                }else {
+                    jk = "perempuan";
+                }
 
             }
 
@@ -74,22 +80,22 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (etNama.getText().toString().isEmpty()) {
-                    Toasty.error(getApplicationContext(), "Field nama tidak boleh kosong", Toasty.LENGTH_SHORT).show();
+                    Toasty.error(getContext(), "Field nama tidak boleh kosong", Toasty.LENGTH_SHORT).show();
                 } else if (etUsername.getText().toString().isEmpty()) {
-                    Toasty.error(getApplicationContext(), "Field username tidak boleh kosong", Toasty.LENGTH_SHORT).show();
+                    Toasty.error(getContext(), "Field username tidak boleh kosong", Toasty.LENGTH_SHORT).show();
                 }else if (etAlamat.getText().toString().isEmpty()){
-                    Toasty.error(getApplicationContext(), "Field alamat tidak boleh kosong", Toasty.LENGTH_SHORT).show();
+                    Toasty.error(getContext(), "Field alamat tidak boleh kosong", Toasty.LENGTH_SHORT).show();
                 }else if (etTelepon.getText().toString().isEmpty()){
-                    Toasty.error(getApplicationContext(), "Field nomor telepon tidak boleh kosong", Toasty.LENGTH_SHORT).show();
+                    Toasty.error(getContext(), "Field nomor telepon tidak boleh kosong", Toasty.LENGTH_SHORT).show();
 
                 } else if (etKtp.getText().toString().isEmpty()) {
-                    Toasty.error(getApplicationContext(), "Field no ktp tidak boleh kosong", Toasty.LENGTH_SHORT).show();
+                    Toasty.error(getContext(), "Field no ktp tidak boleh kosong", Toasty.LENGTH_SHORT).show();
 
                 }else if (etPass.getText().toString().isEmpty()) {
-                    Toasty.error(getApplicationContext(), "Field password tidak boleh kosong", Toasty.LENGTH_SHORT).show();
+                    Toasty.error(getContext(), "Field password tidak boleh kosong", Toasty.LENGTH_SHORT).show();
 
                 }else {
-                    AlertDialog.Builder alert = new AlertDialog.Builder(RegisterActivity.this);
+                    AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
                     alert.setCancelable(false).setMessage("Mengirim data").setTitle("Register");
                     AlertDialog progressDialog = alert.create();
                     progressDialog.show();
@@ -109,11 +115,11 @@ public class RegisterActivity extends AppCompatActivity {
                         public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
                             ResponseModel responseModel = response.body();
                             if (response.isSuccessful() && responseModel.getCode() == 200) {
-                                Toasty.success(getApplicationContext(), "Berhasil registrasi", Toasty.LENGTH_SHORT).show();
-                                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                                Toasty.success(getContext(), "Berhasil registrasi", Toasty.LENGTH_SHORT).show();
+                                getActivity().onBackPressed();
                                 progressDialog.dismiss();
                             }else {
-                                Toasty.error(getApplicationContext(), responseModel.getMessage(), Toasty.LENGTH_SHORT).show();
+                                Toasty.error(getContext(), responseModel.getMessage(), Toasty.LENGTH_SHORT).show();
                                 progressDialog.dismiss();
                             }
 
@@ -121,7 +127,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                         @Override
                         public void onFailure(Call<ResponseModel> call, Throwable t) {
-                            Toasty.error(getApplicationContext(), "Periksa koneksi internet anda", Toasty.LENGTH_SHORT).show();
+                            Toasty.error(getContext(), "Periksa koneksi internet anda", Toasty.LENGTH_SHORT).show();
                             progressDialog.dismiss();
 
                         }
@@ -131,6 +137,8 @@ public class RegisterActivity extends AppCompatActivity {
 
             }
         });
-    }
 
+
+        return view;
+    }
 }
