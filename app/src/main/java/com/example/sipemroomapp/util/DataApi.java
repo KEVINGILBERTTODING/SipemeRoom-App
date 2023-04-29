@@ -7,6 +7,7 @@ public class DataApi {
     final  public static String IP_ADDRESS = "192.168.100.6";// ISI IP ADDRESS ANDA
     final public static String BASE_URL = "http://"+IP_ADDRESS+"/sewa/api/";
     final public static String IMAGE_URL = "http://"+IP_ADDRESS+"/sewa/assets/upload/";
+    final public static String DOWNLOAD_BUKTI_PERSETUJUAN = "http://"+IP_ADDRESS+"/"+"sewa/api/admin/downloadBUktiPersetujuan/";
     public static final String CUSTOMER_DOWNLOAD_INVOICE = DataApi.BASE_URL+"customer/download_invoice/";
 
     public static Retrofit retrofit = null;

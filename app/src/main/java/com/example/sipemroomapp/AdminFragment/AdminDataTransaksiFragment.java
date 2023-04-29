@@ -38,15 +38,16 @@ public class AdminDataTransaksiFragment extends Fragment {
 
 
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_admin_data_transaksi, container, false);
-        rvTransaksi = view.findViewById(R.id.rvListTransaksi);
-        tvEmpty = view.findViewById(R.id.tvEmpty);
-        searchView = view.findViewById(R.id.searchView);
-        adminInterface = DataApi.getClient().create(AdminInterface.class);
+
+        init(view);
+
 
         displayData();
 
@@ -67,9 +68,18 @@ public class AdminDataTransaksiFragment extends Fragment {
         return view;
     }
 
+    private void init(View view) {
+        rvTransaksi = view.findViewById(R.id.rvListTransaksi);
+        tvEmpty = view.findViewById(R.id.tvEmpty);
+        searchView = view.findViewById(R.id.searchView);
+        adminInterface = DataApi.getClient().create(AdminInterface.class);
+
+
+    }
+
     private void displayData() {
         AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
-        alert.setTitle("Memuat data...").setTitle("Loading").setCancelable(false);
+        alert.setMessage("Memuat data...").setTitle("Loading").setCancelable(false);
         AlertDialog progressDialog = alert.create();
         progressDialog.show();
 
