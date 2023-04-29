@@ -87,7 +87,7 @@ public class AdminTransactionAdapter extends RecyclerView.Adapter<AdminTransacti
             bundle.putString("tgl_sewa", transactionsModelList.get(getAdapterPosition()).getTglRental());
             bundle.putString("tgl_kembali", transactionsModelList.get(getAdapterPosition()).getTglKembali());
             bundle.putString("tgl_selesai", transactionsModelList.get(getAdapterPosition()).getTglPengembalian());
-            bundle.putString("status_selesai", transactionsModelList.get(getAdapterPosition()).getTglRental());
+            bundle.putString("status_selesai", transactionsModelList.get(getAdapterPosition()).getStatusRental());
             bundle.putString("status_pengembalian", transactionsModelList.get(getAdapterPosition()).getStatusPengembalian());
             bundle.putString("status_pembayaran", String.valueOf(transactionsModelList.get(getAdapterPosition()).getStatusPembayaran()));
             bundle.putString("bukti_pembayaran", String.valueOf(transactionsModelList.get(getAdapterPosition()).getBuktiPembayaran()));

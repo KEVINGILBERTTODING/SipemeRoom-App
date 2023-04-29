@@ -97,4 +97,10 @@ public interface AdminInterface {
     Call<ResponseModel>konfirmasi(
             @Field("trans_id") String transId
     );
+
+    @FormUrlEncoded
+    @POST("admin/deletetransaction")
+    Call<ResponseModel>deleteTransactions(
+            @Field("trans_id") String transId
+    );
 }

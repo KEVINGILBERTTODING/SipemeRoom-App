@@ -2,6 +2,7 @@ package com.example.sipemroomapp.AdminFragment;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -70,6 +71,12 @@ public class DetailTransaksiAdminFragment extends Fragment {
             btnKonfirmasi.setVisibility(View.GONE);
             btnSelesai.setVisibility(View.VISIBLE);
             btnReject.setVisibility(View.VISIBLE);
+        }
+
+        if (getArguments().getString("status_selesai").equals("Selesai")) {
+            btnKonfirmasi.setVisibility(View.GONE);
+            btnSelesai.setVisibility(View.GONE);
+            btnReject.setVisibility(View.GONE);
         }
 
         btnKembali.setOnClickListener(new View.OnClickListener() {
@@ -141,6 +148,52 @@ public class DetailTransaksiAdminFragment extends Fragment {
 
                     }
                 });
+
+
+            }
+        });
+        btnReject.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
+                alert.setTitle("Loading").setCancelable(false).setMessage("Konfirmasi data...");
+                AlertDialog progressDialog = alert.create();
+                progressDialog.show();
+
+                AlertDialog.Builder alert2 = new AlertDialog.Builder(getContext());
+                alert2.setTitle("Peringatan").setMessage("Transaksi yang di reject akan dihapus secara permanent").setCancelable(false)
+                                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        adminInterface.deleteTransactions(transId).enqueue(new Callback<ResponseModel>() {
+                                            @Override
+                                            public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+                                                ResponseModel responseModel = response.body();
+                                                if (response.isSuccessful() && responseModel.getCode() == 200) {
+                                                    Toasty.success(getContext(), "Transaksi berhasil di hapus", Toasty.LENGTH_SHORT).show();
+                                                    getActivity().onBackPressed();
+                                                    progressDialog.dismiss();
+                                                }else {
+                                                    Toasty.success(getContext(), "Something went wrong", Toasty.LENGTH_SHORT).show();
+                                                    progressDialog.dismiss();
+                                                }
+                                            }
+
+                                            @Override
+                                            public void onFailure(Call<ResponseModel> call, Throwable t) {
+                                                Toasty.success(getContext(), "Periksa koneksi internet anda", Toasty.LENGTH_SHORT).show();
+                                                progressDialog.dismiss();
+
+                                            }
+                                        });
+                                    }
+                                }).setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        });
+                alert2.show();
 
 
             }
