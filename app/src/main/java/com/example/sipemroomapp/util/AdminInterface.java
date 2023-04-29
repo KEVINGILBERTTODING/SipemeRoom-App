@@ -91,4 +91,10 @@ public interface AdminInterface {
 
     @GET("admin/getalltransactions")
     Call<List<TransactionsModel>>getAllTransactions();
+
+    @FormUrlEncoded
+    @POST("admin/konfirmasiBukti")
+    Call<ResponseModel>konfirmasi(
+            @Field("trans_id") String transId
+    );
 }

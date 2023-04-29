@@ -1,6 +1,7 @@
 package com.example.sipemroomapp.AdminFragment;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -14,15 +15,23 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.example.sipemroomapp.FileDownload;
+import com.example.sipemroomapp.Model.ResponseModel;
 import com.example.sipemroomapp.R;
+import com.example.sipemroomapp.util.AdminInterface;
 import com.example.sipemroomapp.util.DataApi;
+
+import es.dmoral.toasty.Toasty;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class DetailTransaksiAdminFragment extends Fragment {
-    TextView tvEmpty, tvNama, tvRuangan, tvtglSewa, tvTglKembali, tvTglSelesai,
+    TextView tvNama, tvRuangan, tvtglSewa, tvTglKembali, tvTglSelesai,
             tvStatusSelesai, tvStatusSewa;
     Button btnDownload, btnKonfirmasi, btnSelesai, btnReject, btnKembali;
     String transId;
+    AdminInterface adminInterface;
 
 
     @Override
@@ -32,6 +41,7 @@ public class DetailTransaksiAdminFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_detail_transaksi_admin, container, false);
 
         init(view);
+        adminInterface = DataApi.getClient().create(AdminInterface.class);
 
         tvNama.setText(getArguments().getString("nama_customer"));
         tvRuangan.setText(getArguments().getString("ruangan"));
@@ -43,7 +53,7 @@ public class DetailTransaksiAdminFragment extends Fragment {
 
         transId = getArguments().getString("id_rental");
 
-        //disabled button download if tidak ada bukti persetujuan
+        //disabled button download jika tidak ada bukti persetujuan
         if (getArguments().getString("bukti_pembayaran").equals("")) {
             btnDownload.setEnabled(false);
             btnDownload.setText("Tidak ada bukti persetujuan");
@@ -51,6 +61,15 @@ public class DetailTransaksiAdminFragment extends Fragment {
             btnDownload.setBackgroundColor(getContext().getColor(R.color.dark_gray));
             btnKonfirmasi.setVisibility(View.GONE);
 
+        }
+
+        Log.d("dsad", "onCreateView: "+getArguments().getString("status_pembayaran"));
+
+        // jika status persetujuan  == TRUE maka hide button konfirmasi
+        if (getArguments().getString("status_pembayaran").equals("1")) {
+            btnKonfirmasi.setVisibility(View.GONE);
+            btnSelesai.setVisibility(View.VISIBLE);
+            btnReject.setVisibility(View.VISIBLE);
         }
 
         btnKembali.setOnClickListener(new View.OnClickListener() {
@@ -90,6 +109,42 @@ public class DetailTransaksiAdminFragment extends Fragment {
                 }
             }
         });
+        btnKonfirmasi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
+                alert.setTitle("Loading").setCancelable(false).setMessage("Konfirmasi data...");
+                AlertDialog progressDialog = alert.create();
+                progressDialog.show();
+                adminInterface.konfirmasi(transId).enqueue(new Callback<ResponseModel>() {
+                    @Override
+                    public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+                        ResponseModel responseModel = response.body();
+                        if (response.isSuccessful() && responseModel.getStatus() == true) {
+                            Toasty.success(getContext(), "Transaksi berhasil dikonfirmasi", Toasty.LENGTH_SHORT).show();
+                            getActivity().onBackPressed();
+                            progressDialog.dismiss();
+
+                        }else {
+                            Toasty.error(getContext(), "Something went wrong", Toasty.LENGTH_SHORT).show();
+
+                            progressDialog.dismiss();
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseModel> call, Throwable t) {
+
+                        Toasty.error(getContext(), "Periksa koneksi internet anda", Toasty.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
+
+                    }
+                });
+
+
+            }
+        });
 
 
         return view;
@@ -109,6 +164,7 @@ public class DetailTransaksiAdminFragment extends Fragment {
         btnSelesai = view.findViewById(R.id.btnSelesai);
         btnReject = view.findViewById(R.id.btnTolak);
         btnKembali = view.findViewById(R.id.btnKembali) ;
+
 
 
 
