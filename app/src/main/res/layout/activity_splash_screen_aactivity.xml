@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/main"
     tools:context=".SplashScreenAActivity">
 
     <LinearLayout
@@ -14,28 +14,25 @@
         android:layout_centerVertical="true"
         android:orientation="vertical">
 
-        <com.airbnb.lottie.LottieAnimationView
-            android:layout_width="@dimen/_250sdp"
-            android:layout_height="@dimen/_250sdp"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
+        <ImageView
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_60sdp"
             android:layout_gravity="center_horizontal"
-            app:lottie_rawRes="@raw/icon_anim"
-            />
-
+            android:src="@drawable/main_logo"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
-            android:text="SIPEMEROOM"
+            android:text="SipemeRoom"
+            android:layout_marginTop="@dimen/_10sdp"
             android:layout_gravity="center_horizontal"
-            android:textColor="@color/main"
-            android:fontFamily="@font/popsem"
-            android:textSize="@dimen/_18sdp"/>
+            android:textColor="@color/white"
+            android:textSize="@dimen/_15ssp"
+            android:fontFamily="@font/pop_light"/>
+
+
+
+      
 
     </LinearLayout>
 
