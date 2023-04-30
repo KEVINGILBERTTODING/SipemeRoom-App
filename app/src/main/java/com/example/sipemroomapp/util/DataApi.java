@@ -9,6 +9,7 @@ public class DataApi {
     final public static String IMAGE_URL = "http://"+IP_ADDRESS+"/sewa/assets/upload/";
     final public static String DOWNLOAD_BUKTI_PERSETUJUAN = "http://"+IP_ADDRESS+"/"+"sewa/api/admin/downloadBUktiPersetujuan/";
     public static final String CUSTOMER_DOWNLOAD_INVOICE = DataApi.BASE_URL+"customer/download_invoice/";
+    public static final String DOWNLOAD_LAPORAN_URL = "http://"+IP_ADDRESS+"/sewa/api/admin/downloadLaporan/";
 
     public static Retrofit retrofit = null;
 
