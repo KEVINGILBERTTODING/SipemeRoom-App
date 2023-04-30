@@ -82,6 +82,7 @@ public class AdminTransactionAdapter extends RecyclerView.Adapter<AdminTransacti
             Fragment fragment = new DetailTransaksiAdminFragment();
             Bundle bundle = new Bundle();
             bundle.putString("id_rental", transactionsModelList.get(getAdapterPosition()).getIdRental());
+            bundle.putString("id_room", transactionsModelList.get(getAdapterPosition()).getRoomId());
             bundle.putString("nama_customer", transactionsModelList.get(getAdapterPosition()).getNama());
             bundle.putString("ruangan", transactionsModelList.get(getAdapterPosition()).getRoomName());
             bundle.putString("tgl_sewa", transactionsModelList.get(getAdapterPosition()).getTglRental());

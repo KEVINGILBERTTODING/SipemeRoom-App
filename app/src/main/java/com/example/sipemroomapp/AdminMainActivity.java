@@ -7,9 +7,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.example.sipemroomapp.AdminFragment.AdminDataTransaksiFragment;
 import com.example.sipemroomapp.AdminFragment.AdminHomeFragment;
 import com.example.sipemroomapp.AdminFragment.AdminProfileFragment;
-import com.example.sipemroomapp.Customer_fragment.CustomerMyTransactionsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -31,7 +31,7 @@ public class AdminMainActivity extends AppCompatActivity {
                     replace(new AdminHomeFragment());
                     return true;
                 } else if (item.getItemId() == R.id.menuTransactions) {
-                    replace(new CustomerMyTransactionsFragment());
+                    replace(new AdminDataTransaksiFragment());
                     return true;
                 }else if (item.getItemId() == R.id.menuProfile){
                     replace(new AdminProfileFragment());

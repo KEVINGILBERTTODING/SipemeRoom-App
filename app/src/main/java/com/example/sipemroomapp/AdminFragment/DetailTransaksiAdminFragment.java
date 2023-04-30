@@ -34,8 +34,9 @@ public class DetailTransaksiAdminFragment extends Fragment {
     TextView tvNama, tvRuangan, tvtglSewa, tvTglKembali, tvTglSelesai,
             tvStatusSelesai, tvStatusSewa;
     Button btnDownload, btnKonfirmasi, btnSelesai, btnReject, btnKembali;
-    String transId;
+    String transId, roomId;
     AdminInterface adminInterface;
+
 
 
     @Override
@@ -53,6 +54,8 @@ public class DetailTransaksiAdminFragment extends Fragment {
         tvTglKembali.setText(getArguments().getString("tgl_kembali"));
         tvStatusSewa.setText(getArguments().getString("status_pengembalian"));
         tvStatusSelesai.setText(getArguments().getString("status_selesai"));
+        roomId = getArguments().getString("id_room");
+        Log.d("sdsd", "Value room id: " + roomId);
 
         transId = getArguments().getString("id_rental");
 
@@ -264,7 +267,7 @@ public class DetailTransaksiAdminFragment extends Fragment {
                             AlertDialog progressDialog = alert.create();
                             progressDialog.show();
 
-                            adminInterface.sewaSelesai(transId, tvDatePicker.getText().toString())
+                            adminInterface.sewaSelesai(roomId,transId, tvDatePicker.getText().toString())
                                     .enqueue(new Callback<ResponseModel>() {
                                         @Override
                                         public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {

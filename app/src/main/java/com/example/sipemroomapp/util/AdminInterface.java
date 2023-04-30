@@ -109,6 +109,7 @@ public interface AdminInterface {
     @FormUrlEncoded
     @POST("admin/sewaSelesai")
     Call<ResponseModel>sewaSelesai(
+            @Field("id_room") String roomId,
             @Field("trans_id") String transId,
             @Field("tanggal") String tanggal
     );
