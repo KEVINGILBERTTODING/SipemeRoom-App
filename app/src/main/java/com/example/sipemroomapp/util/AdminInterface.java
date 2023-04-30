@@ -102,6 +102,7 @@ public interface AdminInterface {
     @FormUrlEncoded
     @POST("admin/deletetransaction")
     Call<ResponseModel>deleteTransactions(
+            @Field("id_room") String roomId,
             @Field("trans_id") String transId
     );
 

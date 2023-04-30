@@ -169,7 +169,7 @@ public class DetailTransaksiAdminFragment extends Fragment {
                                 .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
-                                        adminInterface.deleteTransactions(transId).enqueue(new Callback<ResponseModel>() {
+                                        adminInterface.deleteTransactions(roomId,transId).enqueue(new Callback<ResponseModel>() {
                                             @Override
                                             public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
                                                 ResponseModel responseModel = response.body();
