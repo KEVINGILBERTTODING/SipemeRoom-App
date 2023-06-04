@@ -2,13 +2,10 @@ package com.example.sipemroomapp.Customer_fragment;
 
 import static android.app.Activity.RESULT_OK;
 
-import android.Manifest;
 import android.app.Dialog;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +17,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
-import com.example.sipemroomapp.FileDownload;
 import com.example.sipemroomapp.Model.ResponseModel;
 import com.example.sipemroomapp.Model.TransactionsModel;
 import com.example.sipemroomapp.R;
@@ -227,26 +223,9 @@ public class CustomerDetailTransaksiFragment extends Fragment {
 
     private void download() {
         String url = DataApi.CUSTOMER_DOWNLOAD_INVOICE+transId;
-        String title = "Invoice";
-        String description = "Downloading PDF file";
-        String fileName = "Invoice.pdf";
-
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (getContext().checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
-
-                String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
-            } else {
-
-                FileDownload fileDownload = new FileDownload(getContext());
-                fileDownload.downloadFile(url, title, description, fileName);
-
-            }
-        } else {
-
-            FileDownload fileDownload = new FileDownload(getContext());
-            fileDownload.downloadFile(url, title, description, fileName);
-        }
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(url));
+        startActivity(intent);
     }
 
     private void dialogRefresh() {

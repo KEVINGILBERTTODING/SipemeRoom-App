@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.OpenableColumns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -341,6 +342,7 @@ public class AdminInsertRuanganFragment extends Fragment {
     }
 
 
+
     public String getRealPathFromUri(Uri uri) {
         String filePath = "";
         if (getContext().getContentResolver() != null) {
@@ -362,7 +364,10 @@ public class AdminInsertRuanganFragment extends Fragment {
             Cursor cursor = getContext().getContentResolver().query(uri, null, null, null, null);
             try {
                 if (cursor != null && cursor.moveToFirst()) {
-
+                    int displayNameIndex = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
+                    if (displayNameIndex != -1) {
+                        result = cursor.getString(displayNameIndex);
+                    }
                 }
             } finally {
                 if (cursor != null) {
@@ -391,6 +396,4 @@ public class AdminInsertRuanganFragment extends Fragment {
         outputStream.close();
         inputStream.close();
     }
-
-
 }

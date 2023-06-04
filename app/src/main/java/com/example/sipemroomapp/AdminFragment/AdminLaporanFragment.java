@@ -1,10 +1,9 @@
 package com.example.sipemroomapp.AdminFragment;
 
-import android.Manifest;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.content.pm.PackageManager;
-import android.os.Build;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +19,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sipemroomapp.AdminAdapter.AdminTransactionAdapter;
-import com.example.sipemroomapp.FileDownload;
 import com.example.sipemroomapp.Model.TransactionsModel;
 import com.example.sipemroomapp.R;
 import com.example.sipemroomapp.util.AdminInterface;
@@ -134,28 +132,9 @@ public class AdminLaporanFragment extends Fragment {
             public void onClick(View v) {
 
                 String url = DataApi.DOWNLOAD_LAPORAN_URL+tglDari+"/"+tglSampai;
-                String title = "Laporan_Penyewaan_"+tglDari+"-"+tglSampai;
-                String description = "Downloading PDF file";
-                String fileName = "Laporan_Penyewaan_"+tglDari+"-"+tglSampai+".pdf";
-
-
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    if (getActivity().checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
-
-                        String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
-
-                        requestPermissions(permissions, 1000);
-                    } else {
-
-                        FileDownload fileDownload = new FileDownload(getContext());
-                        fileDownload.downloadFile(url, title, description, fileName);
-
-                    }
-                } else {
-
-                    FileDownload fileDownload = new FileDownload(getContext());
-                    fileDownload.downloadFile(url, title, description, fileName);
-                }
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url));
+                startActivity(intent);
             }
         });
 

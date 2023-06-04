@@ -1,12 +1,11 @@
 package com.example.sipemroomapp.AdminFragment;
 
-import android.Manifest;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
-import android.content.pm.PackageManager;
-import android.os.Build;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,7 +17,6 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
-import com.example.sipemroomapp.FileDownload;
 import com.example.sipemroomapp.Model.ResponseModel;
 import com.example.sipemroomapp.R;
 import com.example.sipemroomapp.util.AdminInterface;
@@ -95,29 +93,9 @@ public class DetailTransaksiAdminFragment extends Fragment {
             public void onClick(View v) {
 
                 String url = DataApi.DOWNLOAD_BUKTI_PERSETUJUAN+transId;
-                String title = "Buti_Persetujuan_"+transId;
-                String description = "Downloading PDF file";
-                String fileName = "Bukti_persetujuan_"+transId+".pdf";
-                Log.d("dasd", "onClick: " +url);
-
-
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    if (getActivity().checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
-
-                        String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
-
-                        requestPermissions(permissions, 1000);
-                    } else {
-
-                        FileDownload fileDownload = new FileDownload(getContext());
-                        fileDownload.downloadFile(url, title, description, fileName);
-
-                    }
-                } else {
-
-                    FileDownload fileDownload = new FileDownload(getContext());
-                    fileDownload.downloadFile(url, title, description, fileName);
-                }
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url));
+                startActivity(intent);
             }
         });
         btnKonfirmasi.setOnClickListener(new View.OnClickListener() {
