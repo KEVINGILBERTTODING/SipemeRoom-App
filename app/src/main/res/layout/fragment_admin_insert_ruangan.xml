@@ -186,10 +186,12 @@
                     android:text="Harga Sewa perhari"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:fontFamily="@font/popmed"
+                    android:visibility="gone"
                     android:textSize="@dimen/_12ssp"/>
 
                 <EditText
                     android:id="@+id/etHargaSewa"
+                    android:visibility="gone"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -202,6 +204,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Denda"
+                    android:visibility="gone"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:fontFamily="@font/popmed"
                     android:textSize="@dimen/_12ssp"/>
@@ -212,6 +215,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/_10sdp"
+                    android:visibility="gone"
                     android:fontFamily="@font/popmed"
                     android:background="@drawable/container_edittext2"
                     android:textSize="@dimen/_12ssp"/>

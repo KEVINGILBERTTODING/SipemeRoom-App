@@ -206,10 +206,6 @@ public class AdminInsertRuanganFragment extends Fragment {
                         Toasty.error(getContext(), "Field kapasitas tidak boleh kosong", Toasty.LENGTH_SHORT).show();
                 }else if (etDekorasi.getText().toString().isEmpty()) {
                     Toasty.error(getContext(), "Field dekorasi tidak boleh kosong", Toasty.LENGTH_SHORT).show();
-                }else if (etHargaSewa.getText().toString().isEmpty()) {
-                    Toasty.error(getContext(), "Field harga sewa tidak boleh kosong", Toasty.LENGTH_SHORT).show();
-                }else if (etDenda.getText().toString().isEmpty()) {
-                    Toasty.error(getContext(), "Field denda tidak boleh kosong", Toasty.LENGTH_SHORT).show();
                 }else if (etTahun.getText().toString().isEmpty()) {
                     Toasty.error(getContext(), "Field tahun tidak boleh kosong", Toasty.LENGTH_SHORT).show();
                 }else if (tvPathImage.getText().toString().isEmpty()) {

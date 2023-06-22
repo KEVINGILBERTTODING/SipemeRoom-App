@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.OpenableColumns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -251,13 +252,13 @@ public class CustomerDetailTransaksiFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-
         if (resultCode == RESULT_OK && data != null) {
             if (requestCode == 1) {
                 Uri uri = data.getData();
                 String pdfPath = getRealPathFromUri(uri);
                 file = new File(pdfPath);
                 tvPathFile.setText(file.getName());
+
             }
         }
     }
@@ -284,7 +285,10 @@ public class CustomerDetailTransaksiFragment extends Fragment {
             Cursor cursor = getContext().getContentResolver().query(uri, null, null, null, null);
             try {
                 if (cursor != null && cursor.moveToFirst()) {
-
+                    int displayNameIndex = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
+                    if (displayNameIndex != -1) {
+                        result = cursor.getString(displayNameIndex);
+                    }
                 }
             } finally {
                 if (cursor != null) {
@@ -313,6 +317,5 @@ public class CustomerDetailTransaksiFragment extends Fragment {
         outputStream.close();
         inputStream.close();
     }
-
 
 }
