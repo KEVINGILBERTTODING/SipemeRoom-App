@@ -239,10 +239,6 @@ public class AdminEditRuanganFragment extends Fragment {
 
 
 
-
-
-
-
                     if (tvPathImage.getText().toString().isEmpty()) {
 
                         HashMap map = new HashMap();

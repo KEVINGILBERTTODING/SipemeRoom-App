@@ -4,7 +4,9 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,6 +26,7 @@ import com.example.sipemroomapp.Model.ResponseModel;
 import com.example.sipemroomapp.R;
 import com.example.sipemroomapp.util.CustomerInterface;
 import com.example.sipemroomapp.util.DataApi;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.HashMap;
 
@@ -41,6 +44,7 @@ public class CustomerDetaillRoomFragment extends Fragment {
     ImageView ivRoom;
     Integer status, roomId;
     String gambar, room_name, dekorasi, tahun, denda, harga;
+    private FloatingActionButton fabChat;
     SharedPreferences sharedPreferences;
 
     @Override
@@ -52,6 +56,7 @@ public class CustomerDetaillRoomFragment extends Fragment {
        tvTotalPerson = view.findViewById(R.id.tvTotalPerson);
        tvDekorasi  = view.findViewById(R.id.tvDekorasi);
        tvTahun = view.findViewById(R.id.tvTahun);
+       fabChat = view.findViewById(R.id.fabChat);
        tvStatus = view.findViewById(R.id.tvStatus);
        btnSewa = view.findViewById(R.id.btnSewa);
        ivRoom = view.findViewById(R.id.ivRoom);
@@ -88,6 +93,13 @@ public class CustomerDetaillRoomFragment extends Fragment {
        tvRoomName.setText(room_name);
        tvDekorasi.setText(dekorasi);
        tvTahun.setText(tahun);
+
+       fabChat.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               openWhatsApp();
+           }
+       });
 
        btnKembali.setOnClickListener(new View.OnClickListener() {
            @Override
@@ -219,5 +231,18 @@ public class CustomerDetaillRoomFragment extends Fragment {
         });
 
         datePickerDialog.show();
+    }
+
+    private void openWhatsApp() {
+        String phoneNumber = "62895704370441";
+        String message = "Halo, Saya ingin bertanya apakah ruangan " + getArguments().getString("room_name") + " tersedia?";
+
+
+        String url = "https://api.whatsapp.com/send?phone=" + phoneNumber + "&text=" + Uri.encode(message);
+
+
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(url));
+        startActivity(intent);
     }
 }
