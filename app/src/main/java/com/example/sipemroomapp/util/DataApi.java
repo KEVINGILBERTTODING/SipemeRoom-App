@@ -4,7 +4,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class DataApi {
-    final  public static String IP_ADDRESS = "192.168.100.6";// ISI IP ADDRESS ANDA
+    final  public static String IP_ADDRESS = "192.168.40.219";// ISI IP ADDRESS ANDA
     final public static String BASE_URL = "http://"+IP_ADDRESS+"/sewa/api/";
     final public static String IMAGE_URL = "http://"+IP_ADDRESS+"/sewa/assets/upload/";
     final public static String DOWNLOAD_BUKTI_PERSETUJUAN = "http://"+IP_ADDRESS+"/"+"sewa/api/admin/downloadBUktiPersetujuan/";

@@ -74,4 +74,9 @@ public interface CustomerInterface {
             @Query("id_customer") String idCustomer
     );
 
+    @GET("customer/getUserOrder")
+    Call<UserModel> getUserOrder(
+            @Query("id") String id
+    );
+
 }

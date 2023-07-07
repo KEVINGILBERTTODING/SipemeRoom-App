@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:contentPadding="@dimen/_10sdp"
+        app:cardCornerRadius="@dimen/_10sdp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pemberitahuan"
+                android:textColor="@color/black"
+                android:fontFamily="@font/popsem"
+                android:textSize="@dimen/_13ssp"
+                android:layout_gravity="left"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_height="@dimen/_1sdp"
+                android:background="@color/main"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ruangan ini telah disewa oleh:"
+                android:fontFamily="@font/popmed"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:textSize="@dimen/_11ssp"
+                android:textColor="@color/black"
+                android:layout_gravity="left"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nama Lengkap"
+                android:fontFamily="@font/popmed"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:textSize="@dimen/_11ssp"
+                android:textColor="@color/black"
+                android:layout_gravity="left"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvNamaLengkap"
+                android:fontFamily="@font/popmed"
+                android:textSize="@dimen/_11ssp"
+                android:textColor="@color/black"
+                android:layout_gravity="left"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_height="@dimen/_1sdp"
+                android:background="@color/gray"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No Telepon"
+                android:fontFamily="@font/popmed"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:textSize="@dimen/_11ssp"
+                android:textColor="@color/black"
+                android:layout_gravity="left"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvNoTelp"
+                android:fontFamily="@font/popmed"
+                android:textSize="@dimen/_11ssp"
+                android:textColor="@color/black"
+                android:layout_gravity="left"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Oke"
+                android:id="@+id/btnOke"
+                android:fontFamily="@font/popmed"
+                android:layout_marginTop="@dimen/_10sdp"/>
+
+
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

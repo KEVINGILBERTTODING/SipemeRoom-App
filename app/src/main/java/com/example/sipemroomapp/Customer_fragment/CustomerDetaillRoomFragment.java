@@ -23,6 +23,7 @@ import androidx.fragment.app.FragmentActivity;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.sipemroomapp.Model.ResponseModel;
+import com.example.sipemroomapp.Model.UserModel;
 import com.example.sipemroomapp.R;
 import com.example.sipemroomapp.util.CustomerInterface;
 import com.example.sipemroomapp.util.DataApi;
@@ -46,12 +47,14 @@ public class CustomerDetaillRoomFragment extends Fragment {
     String gambar, room_name, dekorasi, tahun, denda, harga;
     private FloatingActionButton fabChat;
     SharedPreferences sharedPreferences;
+    private CustomerInterface customerInterface;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
        View view = inflater.inflate(R.layout.fragment_custome_detaill_room, container, false);
+       customerInterface  = DataApi.getClient().create(CustomerInterface.class);
        tvRoomName = view.findViewById(R.id.tvRoomName);
        tvTotalPerson = view.findViewById(R.id.tvTotalPerson);
        tvDekorasi  = view.findViewById(R.id.tvDekorasi);
@@ -82,6 +85,7 @@ public class CustomerDetaillRoomFragment extends Fragment {
            btnSewa.setText("Telah sewa");
            btnSewa.setTextColor(getContext().getResources().getColor(R.color.white));
            tvStatus.setText("Tidak tersedia / sedang dirental");
+           getUserOrder();
        }else {
            tvStatus.setText("Tersedia");
        }
@@ -205,6 +209,53 @@ public class CustomerDetaillRoomFragment extends Fragment {
 
 
        return view;
+    }
+
+    private void getUserOrder() {
+        AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
+        alert.setTitle("Loading").setMessage("Memuat data....");
+        AlertDialog progressDialog = alert.create();
+        progressDialog.show();
+
+        customerInterface.getUserOrder(String.valueOf(getArguments().getInt("room_id"))).enqueue(new Callback<UserModel>() {
+            @Override
+            public void onResponse(Call<UserModel> call, Response<UserModel> response) {
+                progressDialog.dismiss();
+                if (response.isSuccessful() && response.body() != null) {
+                    Dialog dialog = new Dialog(getContext());
+                    dialog.setContentView(R.layout.layout_notif);
+                    dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+                    final Button btnOke = dialog.findViewById(R.id.btnOke);
+                    final TextView tvNamaLengkap, tvNoTelp;
+                    tvNamaLengkap = dialog.findViewById(R.id.tvNamaLengkap);
+                    tvNoTelp = dialog.findViewById(R.id.tvNoTelp);
+
+                    tvNamaLengkap.setText(response.body().getNama().toString());
+                    tvNoTelp.setText(response.body().getNoTelp());
+
+
+                    dialog.show();
+
+                    btnOke.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                        }
+                    });
+                }else {
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<UserModel> call, Throwable t) {
+                Toasty.error(getContext(), "Tidak ada koneksi internet", Toasty.LENGTH_SHORT).show();
+                progressDialog.dismiss();
+
+            }
+        });
+
     }
 
 
