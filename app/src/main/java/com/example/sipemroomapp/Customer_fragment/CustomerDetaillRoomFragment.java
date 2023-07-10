@@ -84,7 +84,7 @@ public class CustomerDetaillRoomFragment extends Fragment {
            btnSewa.setBackgroundColor(getContext().getResources().getColor(R.color.red));
            btnSewa.setText("Telah sewa");
            btnSewa.setTextColor(getContext().getResources().getColor(R.color.white));
-           tvStatus.setText("Tidak tersedia / sedang dirental");
+           tvStatus.setText("Tidak tersedia / sedang disewa");
            getUserOrder();
        }else {
            tvStatus.setText("Tersedia");
@@ -165,7 +165,7 @@ public class CustomerDetaillRoomFragment extends Fragment {
                             HashMap map = new HashMap();
                             map.put("id_customer", RequestBody.create(MediaType.parse("text/plain"), sharedPreferences.getString("user_id", null)));
                             map.put("room_id", RequestBody.create(MediaType.parse("text/plain"), String.valueOf(roomId)));
-                            map.put("tgl_rental", RequestBody.create(MediaType.parse("text/plain"), tvTanggalRental.getText().toString()));
+                            map.put("tgl_sewa", RequestBody.create(MediaType.parse("text/plain"), tvTanggalRental.getText().toString()));
                             map.put("tgl_kembali",RequestBody.create(MediaType.parse("text/plain"), tvTglKembali.getText().toString()));
                             map.put("harga", RequestBody.create(MediaType.parse("text/plain"), harga));
                             map.put("denda",RequestBody.create(MediaType.parse("text/plain"), denda));
@@ -230,6 +230,7 @@ public class CustomerDetaillRoomFragment extends Fragment {
                     tvNamaLengkap = dialog.findViewById(R.id.tvNamaLengkap);
                     tvNoTelp = dialog.findViewById(R.id.tvNoTelp);
 
+                    tvNamaLengkap.setText(response.body().getNama().toString());
                     tvNamaLengkap.setText(response.body().getNama().toString());
                     tvNoTelp.setText(response.body().getNoTelp());
 

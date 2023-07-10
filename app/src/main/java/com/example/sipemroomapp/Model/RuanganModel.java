@@ -8,13 +8,13 @@ import java.io.Serializable;
 
 public class RuanganModel implements Serializable {
 
-    @SerializedName("id_mobil")
+    @SerializedName("id_ruangan")
     Integer idMobil;
     @SerializedName("kode_tipe")
     String kodeTipe;
-    @SerializedName("merek")
+    @SerializedName("nama_ruangan")
     String merk;
-    @SerializedName("warna")
+    @SerializedName("dekorasi")
     String warna;
     @SerializedName("tahun")
     String tahun;
@@ -34,7 +34,7 @@ public class RuanganModel implements Serializable {
     String centalLock;
     @SerializedName("gambar")
     String gambar;
-    @SerializedName("no_plat")
+    @SerializedName("kapasitas")
     Integer noPlat;
 
     public RuanganModel(Integer idMobil, Integer makanan,Integer noPlat, String kodeTipe, String merk, String warna, String tahun, Integer status, String harga, String denda, Integer ac, Integer mp3Player, String centalLock, String gambar) {

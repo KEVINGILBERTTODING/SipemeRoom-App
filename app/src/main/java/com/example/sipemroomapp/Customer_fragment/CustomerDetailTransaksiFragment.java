@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.OpenableColumns;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,6 +69,8 @@ public class CustomerDetailTransaksiFragment extends Fragment {
 
         transId = getArguments().getInt("trans_id");
         customerInterface = DataApi.getClient().create(CustomerInterface.class);
+
+        Log.d("Transaksi id", "onCreateView: " + transId);
 
         displayData();
         btnDownload.setOnClickListener(new View.OnClickListener() {
@@ -206,7 +209,8 @@ public class CustomerDetailTransaksiFragment extends Fragment {
                 }else {
 
                    dialogRefresh();
-                    progressDialog.dismiss();
+                   Toasty.error(getContext(), "Terjadi salah", Toasty.LENGTH_SHORT).show();
+//                    progressDialog.dismiss();
 
                 }
 

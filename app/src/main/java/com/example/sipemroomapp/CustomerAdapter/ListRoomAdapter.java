@@ -83,7 +83,6 @@ public class ListRoomAdapter extends RecyclerView.Adapter<ListRoomAdapter.ViewHo
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-
             ivRoom = itemView.findViewById(R.id.ivRoom);
             btnDetail = itemView.findViewById(R.id.btnDetail);
             btnSewa = itemView.findViewById(R.id.btnSewa);
@@ -195,7 +194,7 @@ public class ListRoomAdapter extends RecyclerView.Adapter<ListRoomAdapter.ViewHo
                                 HashMap map = new HashMap();
                                 map.put("id_customer", RequestBody.create(MediaType.parse("text/plain"), sharedPreferences.getString("user_id", null)));
                                 map.put("room_id", RequestBody.create(MediaType.parse("text/plain"), String.valueOf(ruanganModelList.get(getAdapterPosition()).getIdMobil())));
-                                map.put("tgl_rental", RequestBody.create(MediaType.parse("text/plain"), tvTanggalRental.getText().toString()));
+                                map.put("tgl_sewa", RequestBody.create(MediaType.parse("text/plain"), tvTanggalRental.getText().toString()));
                                 map.put("tgl_kembali",RequestBody.create(MediaType.parse("text/plain"), tvTglKembali.getText().toString()));
                                 map.put("harga", RequestBody.create(MediaType.parse("text/plain"), ruanganModelList.get(getAdapterPosition()).getHarga()));
                                 map.put("denda",RequestBody.create(MediaType.parse("text/plain"), ruanganModelList.get(getAdapterPosition()).getDenda()));

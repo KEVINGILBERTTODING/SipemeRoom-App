@@ -6,7 +6,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -153,7 +152,7 @@ public class MainRoomAdapter extends RecyclerView.Adapter<MainRoomAdapter.ViewHo
                             HashMap map = new HashMap();
                             map.put("id_customer", RequestBody.create(MediaType.parse("text/plain"), sharedPreferences.getString("user_id", null)));
                             map.put("room_id", RequestBody.create(MediaType.parse("text/plain"), String.valueOf(ruanganModelList.get(holder.getAdapterPosition()).getIdMobil())));
-                            map.put("tgl_rental", RequestBody.create(MediaType.parse("text/plain"), tvTanggalRental.getText().toString()));
+                            map.put("tgl_sewa", RequestBody.create(MediaType.parse("text/plain"), tvTanggalRental.getText().toString()));
                             map.put("tgl_kembali",RequestBody.create(MediaType.parse("text/plain"), tvTglKembali.getText().toString()));
                             map.put("harga", RequestBody.create(MediaType.parse("text/plain"), ruanganModelList.get(holder.getAdapterPosition()).getHarga()));
                             map.put("denda",RequestBody.create(MediaType.parse("text/plain"), ruanganModelList.get(holder.getAdapterPosition()).getDenda()));
@@ -177,7 +176,6 @@ public class MainRoomAdapter extends RecyclerView.Adapter<MainRoomAdapter.ViewHo
 
                                 @Override
                                 public void onFailure(Call<ResponseModel> call, Throwable t) {
-                                    Log.e("adasd", "onFailure: ",t );
                                     Toasty.error(context, "Periksa koneksi internet anda", Toasty.LENGTH_SHORT).show();
                                     progressBar.dismiss();
 

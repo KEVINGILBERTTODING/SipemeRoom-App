@@ -3,6 +3,7 @@ package com.example.sipemroomapp.Customer_fragment;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -81,6 +82,7 @@ public class CustomerMyTransactionsFragment extends Fragment {
         alert.setCancelable(false).setTitle("Loading").setMessage("Memuat data...");
         AlertDialog progressDialog = alert.create();
         progressDialog.show();
+        Log.d("user id", "displayTransactions: " + userId);
 
         CustomerInterface customerInterface = DataApi.getClient().create(CustomerInterface.class);
         customerInterface.getMyTransactions(userId).enqueue(new Callback<List<TransactionsModel>>() {
@@ -104,6 +106,7 @@ public class CustomerMyTransactionsFragment extends Fragment {
             @Override
             public void onFailure(Call<List<TransactionsModel>> call, Throwable t) {
                 Toasty.error(getContext(), "Periksa koneksi internet anda", Toasty.LENGTH_SHORT).show();
+                Log.e("error disini", "onFailure: ", t );
                 progressDialog.dismiss();
 
             }

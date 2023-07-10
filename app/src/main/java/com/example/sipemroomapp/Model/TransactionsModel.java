@@ -5,40 +5,35 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 public class TransactionsModel implements Serializable {
-    @SerializedName("id_rental")
+    @SerializedName("id_sewa")
     String idRental;
     @SerializedName("id_customer")
     String idCustomer;
-    @SerializedName("id_mobil")
+    @SerializedName("id_ruangan")
     String roomId;
-    @SerializedName("tgl_rental")
+    @SerializedName("tgl_sewa")
     String tglRental;
     @SerializedName("tgl_kembali")
     String tglKembali;
-    @SerializedName("harga")
-   Double harga;
-    @SerializedName("denda")
-   Double denda;
-    @SerializedName("total_denda")
-   Double totalDenda;
     @SerializedName("tgl_pengembalian")
     String tglPengembalian;
     @SerializedName("status_pengembalian")
     String statusPengembalian;
-    @SerializedName("status_rental")
+    @SerializedName("status_sewa")
     String statusRental;
-    @SerializedName("bukti_pembayaran")
+    @SerializedName("bukti_apr")
     String buktiPembayaran;
-    @SerializedName("status_pembayaran")
+    @SerializedName("status_apr")
     Integer statusPembayaran;
     @SerializedName("nama")
     String nama;
+
     @SerializedName("durasi")
     Integer durasi;
 
-    @SerializedName("merek")
+    @SerializedName("nama_ruangan")
     String roomName;
-    @SerializedName("no_plat")
+    @SerializedName("kapasitas")
     Integer totalPeople;
     public TransactionsModel(String idRental, String idCustomer, Integer durasi, String roomId, String tglRental, String tglKembali, Integer totalPeople, Double harga, Double denda, Double totalDenda, String tglPengembalian, String statusPengembalian, String statusRental, String buktiPembayaran, Integer statusPembayaran, String nama, String roomName) {
         this.idRental = idRental;
@@ -46,10 +41,7 @@ public class TransactionsModel implements Serializable {
         this.roomId = roomId;
         this.tglRental = tglRental;
         this.tglKembali = tglKembali;
-        this.harga = harga;
         this.totalPeople = totalPeople;
-        this.denda = denda;
-        this.totalDenda = totalDenda;
         this.tglPengembalian = tglPengembalian;
         this.statusPengembalian = statusPengembalian;
         this.statusRental = statusRental;
@@ -100,29 +92,6 @@ public class TransactionsModel implements Serializable {
         this.tglKembali = tglKembali;
     }
 
-    public Double getHarga() {
-        return harga;
-    }
-
-    public void setHarga(Double harga) {
-        this.harga = harga;
-    }
-
-    public Double getDenda() {
-        return denda;
-    }
-
-    public void setDenda(Double denda) {
-        this.denda = denda;
-    }
-
-    public Double getTotalDenda() {
-        return totalDenda;
-    }
-
-    public void setTotalDenda(Double totalDenda) {
-        this.totalDenda = totalDenda;
-    }
 
     public String getTglPengembalian() {
         return tglPengembalian;
@@ -172,8 +141,20 @@ public class TransactionsModel implements Serializable {
         this.nama = nama;
     }
 
+    public void setDurasi(Integer durasi) {
+        this.durasi = durasi;
+    }
+
     public String getRoomName() {
         return roomName;
+    }
+
+    public void setRoomName(String roomName) {
+        this.roomName = roomName;
+    }
+
+    public void setTotalPeople(Integer totalPeople) {
+        this.totalPeople = totalPeople;
     }
 
     public Integer getTotalPeople() {
